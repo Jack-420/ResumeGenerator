@@ -28,6 +28,10 @@ class PersonalInfo(BaseModel):
     address: Address
     contact_infos: List[ContactInfo]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.photo = self.photo.absolute()
+
 
 class Marks(BaseModel):
     type: str
