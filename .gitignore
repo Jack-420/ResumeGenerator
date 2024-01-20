@@ -1,5 +1,6 @@
 # self defined
 inputs/resume_data.json
+inputs/test_resume_data.json
 *.aux
 *.fdb_latexmk
 *.fls
