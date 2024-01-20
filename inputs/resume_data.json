@@ -1,0 +1,292 @@
+{
+	"personal_info": {
+		"name": "Amulya Paritosh",
+		"photo": "amulya3.jpg",
+		"address": {
+			"line1": "Sandhya Sadan, Road no.-6, Ayodhyapuri, Kokar",
+			"line2": "",
+			"city": "Ranchi",
+			"state": "Jharkhand",
+			"country": "India",
+			"pin_code": 834009
+		},
+		"contact_infos": [
+			{
+				"type": "github",
+				"display": "github.com/AmulyaParitosh/",
+				"link": "https://github.com/AmulyaParitosh/",
+				"fa_icon": "github"
+			},
+			{
+				"type": "portfolio",
+				"display": "amulyaparitosh.in/",
+				"link": "https://amulyaparitosh.in/",
+				"fa_icon": "code"
+			},
+			{
+				"type": "linkedin",
+				"display": "linkedin.com/in/amulyaparitosh/",
+				"link": "https://www.linkedin.com/in/amulyaparitosh/",
+				"fa_icon": "linkedin"
+			},
+			{
+				"type": "email",
+				"display": "amulya1171@gmail.com",
+				"link": "mailto:amulya1171@gmail.com",
+				"fa_icon": "envelope"
+			}
+		]
+	},
+	"educations": [
+		{
+			"institute": "Chandigarh University",
+			"degree": "Bachelor of Engineering in Computer Science",
+			"status": "Pursuing",
+			"year": 2025,
+			"marks": {
+				"type": "cgpa",
+				"value": 8.02
+			}
+		},
+		{
+			"institute": "Loyola Convent School",
+			"degree": "Higher Secondary Certificate",
+			"status": "",
+			"year": 2021,
+			"marks": {
+				"type": "percentage",
+				"value": 93
+			}
+		}
+	],
+	"skills": [
+		{
+			"type": "languages",
+			"values": [
+				"Python",
+				"C/C++",
+				"Java",
+				"HTML/CSS",
+				"LaTeX",
+				"SQL",
+				"Dart"
+			]
+		},
+		{
+			"type": "technologies",
+			"values": [
+				"API Development",
+				"Software Development",
+				"Web Scraping",
+				"Data Science",
+				"Database",
+				"Internet of Things"
+			]
+		},
+		{
+			"type": "frameworks",
+			"values": [
+				"PyQt/PySide",
+				"Flutter",
+				"Flask",
+				"Django",
+				"FastAPI"
+			]
+		},
+		{
+			"type": "tools",
+			"values": [
+				"Git/GitHub",
+				"Unix Shell",
+				"Linux",
+				"VS Code",
+				"Anaconda",
+				"Nginx",
+				"Apache2",
+				"Celery",
+				"Postman"
+			]
+		}
+	],
+	"experience": [
+		{
+			"organization": "FreeCAD",
+			"position": "Independent Contractor",
+			"date": "Nov 2023 - Cont.",
+			"link": "https://github.com/FreeCAD/FreeCAD-Component-Management-System",
+			"descriptions": [
+				"Working as a contractor on the Component Management System and Components Library Addon of FreeCAD",
+				"Building an attributes metadata mapping for efficient searching and components specifications storage",
+				"Authentication of API and user component uploading and other API improvements"
+			],
+			"technologies": [
+				"Github OAuth",
+				"Logging",
+				"Flask",
+				"Sqlite",
+				"Sqlalchemy",
+				"Elasticsearch",
+				"PySide",
+				"QtDesigner",
+				"RestAP"
+			]
+		},
+		{
+			"organization": "Google Summer of Code @ FreeCAD",
+			"position": "Open-source contributor",
+			"date": "May 2023 - Aug. 2023",
+			"link": "https://summerofcode.withgoogle.com/archive/2023/projects/h7rrw0s0",
+			"descriptions": [
+				"Worked as a contractor on open-source project at FreeCAD through Google",
+				"Built Component Management System for managing distributed 3D models"
+			],
+			"technologies": [
+				"Flask",
+				"Sqlite",
+				"Sqlalchemy",
+				"Elasticsearch",
+				"PySide",
+				"QtDesigner",
+				"RestAPI",
+				"Swagger"
+			]
+		},
+		{
+			"organization": "My Next Film Pvt. Ltd.",
+			"position": "Intern",
+			"date": "Jul. 2022 - Jan. 2023",
+			"descriptions": [
+				"Django RestAPI developer for script editor, ORM for tree storage structure of scripts",
+				"Running tasks asynchronously with Celery.",
+				"ORM for tree storage structure of scripts(Live Project)",
+				"Script change Tracker"
+			],
+			"technologies": [
+				"Django",
+				"Python",
+				"RestAPI",
+				"Celery",
+				"NLP"
+			]
+		},
+		{
+			"organization": "2D-3D x-ray image Conversion",
+			"position": "Consultant",
+			"date": "Jan. 2022 - Mar. 2023",
+			"descriptions": [
+				"Research project to make a 3D model of the nasal cavity from two x-ray images"
+			],
+			"technologies": [
+				"Python",
+				"Algorithm",
+				"Open3D",
+				"OpenCV",
+				"3D Transformations",
+				"Image Processing"
+			]
+		}
+	],
+	"projects": [
+		{
+			"name": "Component Management System",
+			"link": "https://github.com/AmulyaParitosh/Component-Management-System",
+			"technologies": [
+				"Python",
+				"Flask",
+				"SQLite",
+				"Marshmallow",
+				"Elasticsearch",
+				"Authentication"
+			],
+			"description": "Distributed storage and management system of 3D-models and its metadata for FreeCAD"
+		},
+		{
+			"name": "Components Library Addon",
+			"link": "https://github.com/AmulyaParitosh/Component_Library_Plugin",
+			"technologies": [
+				"Python",
+				"PySide6",
+				"REST-API integration",
+				"Qt Designer"
+			],
+			"description": "Plugin for FreeCAD software for managing local and community-managed library of Open-Source Components"
+		},
+		{
+			"name": "ChatGPT Desktop Client",
+			"link": "https://github.com/AmulyaParitosh/chatGPT_Client",
+			"technologies": [
+				"Python",
+				"ChatGPT-API",
+				"CLI",
+				"Asynchronous Response",
+				"Prompt Engineering"
+			],
+			"description": "CLI, shortcut dialog, and GUI Desktop Application of ChatGPT"
+		},
+		{
+			"name": "20-20-20 Rule",
+			"link": "https://github.com/AmulyaParitosh/20_20_20-Rule-Reduce-Eye-Strain-",
+			"technologies": [
+				"Python",
+				"PyQt",
+				"Qt-Designer",
+				"Scheduling",
+				"SupervisorD"
+			],
+			"description": "Application that reminds you to follow 20-20-20 rule to reduce eye strain"
+		},
+		{
+			"name": "Disease-Prediction-Bot",
+			"link": "https://github.com/AmulyaParitosh/Disease-Pridiction-Bot",
+			"technologies": [
+				"Python",
+				"Machine Learning",
+				"Tkinter",
+				"NumPy",
+				"Pandas",
+				"SkLearn"
+			],
+			"description": "Bot that can diagnose diseases based on symptoms"
+		},
+		{
+			"name": "Analysis of Indian Education (2015-2016)",
+			"link": "https://github.com/AmulyaParitosh/Indian-Education-2016",
+			"technologies": [
+				"Python",
+				"Dash",
+				"Plotly",
+				"Data Analysis"
+			],
+			"description": "Interactive Dashboard of Indian education data (2015-2016)"
+		},
+		{
+			"name": "Alexa clone (Personal assistant)",
+			"link": "https://github.com/AmulyaParitosh/Virtual-Assistant",
+			"technologies": [
+				"Python",
+				"Tensorflow",
+				"NLTK",
+				"Natural Language Processing",
+				"Machine Learning"
+			],
+			"description": "Personal assistant chatbot that can perform a multitude of tasks"
+		}
+	],
+	"achievements": [
+		{
+			"type": "Patent",
+			"title": "Drain Clogging Prevention System",
+			"data": "Application no. :202211017463"
+		},
+		{
+			"type": "Hackathon",
+			"title": "FireFly - NIT Warangal",
+			"data": "3rd Position"
+		},
+		{
+			"type": "Hackathon",
+			"title": "Smart India Hackathon",
+			"data": "Participated"
+		}
+	]
+}

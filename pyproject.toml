@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "resumegenerator"
+version = "0.1.0"
+description = ""
+authors = ["Amulya Paritosh <amulya1171@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pylatex = "^1.4.2"
+pydantic = {extras = ["email"], version = "^2.5.3"}
+pydantic-extra-types = "^2.4.1"
+phonenumbers = "^8.13.28"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
