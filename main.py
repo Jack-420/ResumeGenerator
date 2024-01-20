@@ -2,6 +2,6 @@ from pathlib import Path
 
 from src import create_resume
 
-create_resume(Path("inputs/test_resume_data.json"), Path("outputs/resume"))
+create_resume(Path("inputs/example_resume_data.json"), Path("outputs/example_resume"))
 
-print("LaTeX file generated successfully.")
+print("Resume generated successfully.")

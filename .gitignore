@@ -4,6 +4,7 @@ inputs/resume_data.json
 *.fdb_latexmk
 *.fls
 *.out
+inputs/amulya.jpg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
