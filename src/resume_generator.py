@@ -9,4 +9,4 @@ def create_resume(data_path: Path, output_path: Path):
     latex_resume = create_document(data_obj)
 
     latex_resume.generate_tex(str(output_path))
-    latex_resume.generate_pdf("output")
+    latex_resume.generate_pdf(str(output_path))
