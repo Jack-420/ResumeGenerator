@@ -1,8 +1,9 @@
 # self defined
-data/resume_data.json
+inputs/resume_data.json
 *.aux
 *.fdb_latexmk
 *.fls
+*.out
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
