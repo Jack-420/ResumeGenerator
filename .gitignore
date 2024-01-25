@@ -1,11 +1,11 @@
 # self defined
-inputs/resume_data.json
-inputs/test_resume_data.json
+ResumeGenerator/inputs/resume_data.json
+ResumeGenerator/inputs/test_resume_data.json
+ResumeGenerator/inputs/amulya.jpg
 *.aux
 *.fdb_latexmk
 *.fls
 *.out
-inputs/amulya.jpg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
