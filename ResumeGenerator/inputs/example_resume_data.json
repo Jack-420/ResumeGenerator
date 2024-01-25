@@ -1,0 +1,243 @@
+{
+	"personal_info": {
+		"name": "John Doe",
+		"photo": "inputs/john_doe.jpeg",
+		"address": {
+			"line1": "123 Main St",
+			"line2": "",
+			"city": "Example City",
+			"state": "Example State",
+			"country": "Example Country",
+			"pin_code": 789012
+		},
+		"contact_infos": [
+			{
+				"type": "github",
+				"display": "github.com/JohnDoe/",
+				"link": "https://github.com/JohnDoe/",
+				"fa_icon": "github"
+			},
+			{
+				"type": "portfolio",
+				"display": "johndoeportfolio.com/",
+				"link": "https://johndoeportfolio.com/",
+				"fa_icon": "code"
+			},
+			{
+				"type": "linkedin",
+				"display": "linkedin.com/in/johndoe/",
+				"link": "https://www.linkedin.com/in/johndoe/",
+				"fa_icon": "linkedin"
+			},
+			{
+				"type": "email",
+				"display": "johndoe@example.com",
+				"link": "mailto:johndoe@example.com",
+				"fa_icon": "envelope"
+			}
+		]
+	},
+	"educations": [
+		{
+			"institute": "Example University",
+			"degree": "Bachelor of Engineering in Computer Science",
+			"status": "Graduated",
+			"year": 2023,
+			"marks": {
+				"type": "cgpa",
+				"value": 8.5
+			}
+		},
+		{
+			"institute": "High School",
+			"degree": "High School Diploma",
+			"status": "",
+			"year": 2019,
+			"marks": {
+				"type": "percentage",
+				"value": 95
+			}
+		}
+	],
+	"skills": [
+		{
+			"type": "languages",
+			"values": [
+				"JavaScript",
+				"Ruby",
+				"Swift",
+				"PHP",
+				"CSS",
+				"Go",
+				"Rust"
+			]
+		},
+		{
+			"type": "technologies",
+			"values": [
+				"Cloud Computing",
+				"Blockchain",
+				"Augmented Reality",
+				"Virtual Reality",
+				"Machine Learning"
+			]
+		},
+		{
+			"type": "frameworks",
+			"values": [
+				"React",
+				"Angular",
+				"Vue.js",
+				"Ruby on Rails",
+				"Node.js",
+				"Laravel",
+				"Flask",
+				"Spring Boot"
+			]
+		},
+		{
+			"type": "tools",
+			"values": [
+				"Docker",
+				"Kubernetes",
+				"Jenkins",
+				"Travis CI",
+				"Selenium",
+				"Jira",
+				"Trello",
+				"Slack",
+				"Asana"
+			]
+		}
+	],
+	"experience": [
+		{
+			"organization": "Tech Innovators",
+			"position": "Software Engineer",
+			"date": "Sep 2023 - Cont.",
+			"link": "https://techinnovators.com/",
+			"descriptions": [
+				"Developing innovative solutions for complex business problems",
+				"Collaborating with cross-functional teams to define, design, and ship new features",
+				"Working on cutting-edge technologies to enhance product performance"
+			],
+			"technologies": [
+				"React",
+				"Node.js",
+				"Docker",
+				"GraphQL",
+				"MongoDB",
+				"AWS",
+				"Microservices"
+			]
+		},
+		{
+			"organization": "AI Insights",
+			"position": "Data Scientist",
+			"date": "Jan 2023 - Aug. 2023",
+			"link": "https://aiinsights.com/",
+			"descriptions": [
+				"Analyzing and interpreting complex data sets",
+				"Developing and implementing machine learning models",
+				"Collaborating with domain experts to identify data-driven insights"
+			],
+			"technologies": [
+				"Python",
+				"TensorFlow",
+				"PyTorch",
+				"Scikit-Learn",
+				"Pandas",
+				"NumPy",
+				"Matplotlib"
+			]
+		},
+		{
+			"organization": "Innovation Hub",
+			"position": "UX/UI Designer",
+			"date": "Jul. 2022 - Dec. 2022",
+			"descriptions": [
+				"Creating visually appealing and intuitive user interfaces",
+				"Conducting user research and usability testing",
+				"Collaborating with development teams to implement design solutions"
+			],
+			"technologies": [
+				"Figma",
+				"Sketch",
+				"Adobe XD",
+				"InVision",
+				"Zeplin",
+				"HTML/CSS",
+				"React"
+			]
+		}
+	],
+	"projects": [
+		{
+			"name": "Smart Home Automation System",
+			"link": "https://github.com/JohnDoe/Smart-Home-Automation",
+			"technologies": [
+				"IoT",
+				"Raspberry Pi",
+				"Home Assistant",
+				"Google Home",
+				"Alexa",
+				"MQTT"
+			],
+			"description": "Automate and control home devices remotely for increased convenience"
+		},
+		{
+			"name": "E-commerce Platform",
+			"link": "https://github.com/JohnDoe/E-commerce-Platform",
+			"technologies": [
+				"React",
+				"Node.js",
+				"Express",
+				"MongoDB",
+				"Redux",
+				"Stripe API"
+			],
+			"description": "Full-stack e-commerce platform with secure payment integration"
+		},
+		{
+			"name": "Augmented Reality Game",
+			"link": "https://github.com/JohnDoe/AR-Game",
+			"technologies": [
+				"Unity",
+				"ARKit",
+				"ARCore",
+				"C#",
+				"3D Modeling"
+			],
+			"description": "Immersive augmented reality game for mobile devices"
+		},
+		{
+			"name": "Chatbot for Customer Support",
+			"link": "https://github.com/JohnDoe/Customer-Support-Chatbot",
+			"technologies": [
+				"Natural Language Processing",
+				"Python",
+				"Flask",
+				"TensorFlow",
+				"Dialogflow"
+			],
+			"description": "Intelligent chatbot to assist customers with common queries"
+		}
+	],
+	"achievements": [
+		{
+			"type": "Publication",
+			"title": "Machine Learning in Healthcare",
+			"data": "Journal of Artificial Intelligence Research, Vol. 25, No. 4, 2023"
+		},
+		{
+			"type": "Coding Competition",
+			"title": "CodeChallenge - Tech World",
+			"data": "2nd Position"
+		},
+		{
+			"type": "Hackathon",
+			"title": "Innovate-A-Thon",
+			"data": "Best Innovation Award"
+		}
+	]
+}
