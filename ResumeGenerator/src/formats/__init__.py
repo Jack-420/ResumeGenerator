@@ -4,6 +4,6 @@ from .single_column_nophoto import create_document as single_column_nophoto_resu
 from .single_column_photo import create_document as single_column_photo_resume
 
 
-class ResumeFormat(Enum):
+class ResumeTemplate(Enum):
     SINGLE_COLUMN_PHOTO = "single_column_photo"
     SINGLE_COLUMN_NOPHOTO = "single_column_nophoto"

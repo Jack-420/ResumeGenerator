@@ -2,18 +2,18 @@ from pathlib import Path
 
 from .data import load_data
 from .formats import (
-    ResumeFormat,
+    ResumeTemplate,
     single_column_nophoto_resume,
     single_column_photo_resume,
 )
 
 
-def create_resume(data_path: Path, output_path: Path, resume_format: ResumeFormat):
+def create_resume(data_path: Path, output_path: Path, resume_format: ResumeTemplate):
     data_obj = load_data(data_path)
 
-    if resume_format is ResumeFormat.SINGLE_COLUMN_PHOTO:
+    if resume_format is ResumeTemplate.SINGLE_COLUMN_PHOTO:
         latex_resume = single_column_photo_resume(data_obj)
-    elif resume_format is ResumeFormat.SINGLE_COLUMN_NOPHOTO:
+    elif resume_format is ResumeTemplate.SINGLE_COLUMN_NOPHOTO:
         latex_resume = single_column_nophoto_resume(data_obj)
 
     latex_resume.generate_pdf(str(output_path))

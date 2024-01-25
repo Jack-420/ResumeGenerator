@@ -1,9 +1,22 @@
-from pylatex import (Command, Document, FlushLeft, FlushRight, HorizontalSpace,
-                     NoEscape, Tabular, VerticalSpace)
+from pylatex import (
+    Command,
+    Document,
+    FlushLeft,
+    FlushRight,
+    HorizontalSpace,
+    NoEscape,
+    Tabular,
+    VerticalSpace,
+)
 
 from ..data import PersonalInfo, ResumeData
-from .__single_column_content import (add_achievements, add_educations,
-                                      add_expirence, add_projects, add_skills)
+from .__single_column_content import (
+    add_achievements,
+    add_educations,
+    add_expirence,
+    add_projects,
+    add_skills,
+)
 
 
 def set_resume_header(doc: Document, data: PersonalInfo):
@@ -46,7 +59,9 @@ def create_document(data: ResumeData) -> Document:
     latex = Document(documentclass="article", document_options=["letterpaper", "11pt"])
 
     with open(
-        "src/formats/single_column_photo_preamble.tex", "r", encoding="utf-8"
+        "ResumeGenerator/src/formats/single_column_photo_preamble.tex",
+        "r",
+        encoding="utf-8",
     ) as file:
         latex.preamble.append(NoEscape(file.read()))
 

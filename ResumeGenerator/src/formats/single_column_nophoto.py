@@ -50,7 +50,9 @@ def create_document(data: ResumeData) -> Document:
     latex = Document(documentclass="article", document_options=["letterpaper", "11pt"])
 
     with open(
-        "src/formats/single_column_nophoto_preamble.tex", "r", encoding="utf-8"
+        "ResumeGenerator/src/formats/single_column_nophoto_preamble.tex",
+        "r",
+        encoding="utf-8",
     ) as file:
         latex.preamble.append(NoEscape(file.read()))
 
