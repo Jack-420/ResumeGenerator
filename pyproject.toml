@@ -12,6 +12,8 @@ pylatex = "^1.4.2"
 pydantic = {extras = ["email"], version = "^2.5.3"}
 pydantic-extra-types = "^2.4.1"
 phonenumbers = "^8.13.28"
+fastapi = "^0.109.0"
+uvicorn = {extras = ["standard"], version = "^0.27.0.post1"}
 
 
 [build-system]
