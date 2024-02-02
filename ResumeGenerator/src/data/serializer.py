@@ -2,14 +2,16 @@ import json
 from pathlib import Path
 from typing import List, Optional, Union
 
-from pydantic import AnyUrl, BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr
 from pydantic_extra_types.phone_numbers import PhoneNumber
+
+from .utils import AnyUrlStr
 
 
 class ContactInfo(BaseModel):
     type: str
     display: str
-    link: Union[AnyUrl, EmailStr, PhoneNumber]
+    link: Union[AnyUrlStr, EmailStr, PhoneNumber]
     fa_icon: str
 
 
@@ -30,7 +32,7 @@ class PersonalInfo(BaseModel):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.photo = self.photo.absolute()
+        self.photo = str(self.photo.absolute())
 
 
 class Marks(BaseModel):
@@ -55,14 +57,14 @@ class Experience(BaseModel):
     organization: str
     position: str
     date: str
-    link: Optional[AnyUrl] = ""
+    link: Optional[AnyUrlStr] = ""
     descriptions: List[str]
     technologies: List[str]
 
 
 class Project(BaseModel):
     name: str
-    link: Optional[AnyUrl] = ""
+    link: Optional[AnyUrlStr] = ""
     technologies: List[str]
     description: str
 
