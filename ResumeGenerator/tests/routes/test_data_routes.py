@@ -10,9 +10,7 @@ client = TestClient(app)
 
 
 expected_data = ResumeData.load_data(
-    Path(
-        "/home/encryptedbee/tesla/projects/ResumeGenerator/ResumeGenerator/example/inputs/example_resume_data.json"
-    )
+    Path("ResumeGenerator/example/inputs/example_resume_data.json")
 ).model_dump()
 
 

@@ -47,7 +47,7 @@ def fake_address():
 def fake_personal_info():
     return PersonalInfo(
         name=fake.name(),
-        photo="/home/encryptedbee/tesla/projects/ResumeGenerator/ResumeGenerator/example/inputs/john_doe.jpeg",
+        photo="ResumeGenerator/example/inputs/john_doe.jpeg",
         address=fake_address(),
         contact_infos=[fake_contact_info() for _ in range(random.randint(1, 3))],
     )
