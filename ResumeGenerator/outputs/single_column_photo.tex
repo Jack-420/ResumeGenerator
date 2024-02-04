@@ -4,8 +4,8 @@
 \usepackage{lmodern}%
 \usepackage{textcomp}%
 \usepackage{lastpage}%
+\usepackage{ragged2e}%
 %
-
 
 % -------------------- PACKAGES --------------------
 
@@ -22,12 +22,13 @@
 \usepackage{tabularx}
 \usepackage{xcolor}
 \usepackage{fontawesome5}
+\usepackage{graphicx}
 
 \input{glyphtounicode}
 
 % -------------------- FONT --------------------
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
+\fancyhf{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -36,7 +37,7 @@
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-1in} % Default was -.5in
+\addtolength{\topmargin}{-0.5in}
 \addtolength{\textheight}{1.0in}
 
 \urlstyle{same}
@@ -103,18 +104,22 @@
 \begin{document}%
 \normalsize%
 % % -------------------- HEADING --------------------%
-
-\begin{flushright}
-\end{flushright}
-
-\begin{center}
-    \textbf{\Huge \scshape John Doe} \\ \vspace{8pt}
-    \small %
-\faIcon{github} \href{https://github.com/JohnDoe/}{\underline{github.com/JohnDoe/}} $ $
-\faIcon{code} \href{https://johndoeportfolio.com/}{\underline{johndoeportfolio.com/}} $ $
-\faIcon{linkedin} \href{https://www.linkedin.com/in/johndoe/}{\underline{linkedin.com/in/johndoe/}} $ $
-\faIcon{envelope} \href{mailto:johndoe@example.com}{\underline{johndoe@example.com}}%
-\end{center}%
+\begin{flushleft}%
+\hspace*{0.5cm}%
+\includegraphics[width=5cm]{/home/encryptedbee/tesla/projects/ResumeGenerator/ResumeGenerator/inputs/john\_doe.jpeg}%
+\end{flushleft}%
+\vspace{-150pt}%
+\begin{flushright}%
+\textbf{\Huge John Doe  \\ \vspace{8pt}}%
+\begin{tabular}{ll}%
+\vspace*{6pt}%
+\faIcon{github} & \href{https://github.com/JohnDoe/}{\underline{github.com/JohnDoe/}} \\ \vspace{8pt}
+\faIcon{code} & \href{https://johndoeportfolio.com/}{\underline{johndoeportfolio.com/}} \\ \vspace{8pt}
+\faIcon{linkedin} & \href{https://www.linkedin.com/in/johndoe/}{\underline{linkedin.com/in/johndoe/}} \\ \vspace{8pt}
+\faIcon{envelope} & \href{mailto:johndoe@example.com}{\underline{johndoe@example.com}}%
+\vspace*{6pt}%
+\end{tabular}%
+\end{flushright}%
 % % -------------------- EDUCATION --------------------%
 \section{Education}%
 \label{sec:Education}%
