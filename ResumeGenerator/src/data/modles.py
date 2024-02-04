@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 from pathlib import Path
 from typing import List, Optional, Union
@@ -5,7 +7,7 @@ from typing import List, Optional, Union
 from pydantic import BaseModel, EmailStr
 from pydantic_extra_types.phone_numbers import PhoneNumber
 
-from .utils import AnyUrlStr
+from .utils import AbsoluteFilePath, AnyUrlStr
 
 
 class ContactInfo(BaseModel):
@@ -26,13 +28,9 @@ class Address(BaseModel):
 
 class PersonalInfo(BaseModel):
     name: str
-    photo: Path
+    photo: AbsoluteFilePath
     address: Address
     contact_infos: List[ContactInfo]
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.photo = str(self.photo.absolute())
 
 
 class Marks(BaseModel):
@@ -57,14 +55,14 @@ class Experience(BaseModel):
     organization: str
     position: str
     date: str
-    link: Optional[AnyUrlStr] = ""
+    link: Optional[AnyUrlStr]
     descriptions: List[str]
     technologies: List[str]
 
 
 class Project(BaseModel):
     name: str
-    link: Optional[AnyUrlStr] = ""
+    link: Optional[AnyUrlStr]
     technologies: List[str]
     description: str
 
@@ -83,17 +81,26 @@ class ResumeData(BaseModel):
     projects: List[Project]
     achievements: List[Achievement]
 
+    @staticmethod
+    def load_data(path: Path) -> ResumeData:
+        with path.open("r", encoding="utf-8") as json_file:
+            json_data: dict = json.load(json_file)
+            return ResumeData(**json_data)
 
-def load_data(path: Path) -> ResumeData:
-    with path.open("r", encoding="utf-8") as json_file:
-        json_str = json_file.read().replace("#", r"\\#")
-        json_data: dict = json.loads(json_str)
-        return ResumeData(**json_data)
+    def data_for_latex(self) -> ResumeData:
+        data_dict = self.model_dump()
+        self.__replace_hash_with_latex_hash(data_dict)
+        return ResumeData(**data_dict)
 
-
-if __name__ == "__main__":
-    obj = load_data(Path("resume_data.json"))
-    print(obj)
-    print(type(obj))
-    print(type(obj.skills))
-    print(obj.skills[0])
+    def __replace_hash_with_latex_hash(self, data: dict):
+        for key, value in data.items():
+            if isinstance(value, dict):
+                self.__replace_hash_with_latex_hash(value)
+            elif isinstance(value, list):
+                if isinstance(value[0], str):
+                    data[key] = [item.replace("#", "\\#") for item in value]
+                for item in value:
+                    if isinstance(item, dict):
+                        self.__replace_hash_with_latex_hash(item)
+            elif isinstance(value, str):
+                data[key] = value.replace("#", "\\#")

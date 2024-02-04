@@ -1,8 +1,8 @@
 # self defined
 .vscode/
-ResumeGenerator/inputs/resume_data.json
-ResumeGenerator/inputs/test_resume_data.json
-ResumeGenerator/inputs/amulya.jpg
+ResumeGenerator/example/inputs/resume_data.json
+ResumeGenerator/example/inputs/test_resume_data.json
+ResumeGenerator/example/inputs/amulya.jpg
 *.aux
 *.fdb_latexmk
 *.fls

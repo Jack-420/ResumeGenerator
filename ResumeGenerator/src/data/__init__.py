@@ -1,4 +1,4 @@
-from .serializer import (
+from .modles import (
     Achievement,
     Address,
     ContactInfo,
@@ -9,5 +9,4 @@ from .serializer import (
     Project,
     ResumeData,
     Skill,
-    load_data,
 )
