@@ -168,6 +168,17 @@ def test_resume_data():
     assert isinstance(resume_data, ResumeData)
 
 
+# Test for invalid photo path
+def test_invalid_photo_path():
+    with pytest.raises(ValueError):
+        PersonalInfo(
+            name=fake.name(),
+            photo=fake.file_path(),
+            address=fake_address(),
+            contact_infos=[fake_contact_info() for _ in range(random.randint(1, 3))],
+        )
+
+
 def test_load_data():
     # Write the fake data to a temporary JSON file
     resume_data = ResumeData(
