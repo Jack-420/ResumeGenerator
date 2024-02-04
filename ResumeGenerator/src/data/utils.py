@@ -9,6 +9,6 @@ AnyUrlStr = Annotated[
 ]
 
 AbsoluteFilePath = Annotated[
-    FilePath,
-    BeforeValidator(lambda value: FilePath(value).absolute()),
+    str,
+    BeforeValidator(lambda value: str(FilePath(value).absolute())),
 ]

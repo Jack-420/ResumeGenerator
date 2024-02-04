@@ -10,10 +10,11 @@ from ..data import (
     Project,
     ResumeData,
     Skill,
-    load_data,
 )
 
-data: ResumeData = load_data(Path("ResumeGenerator/inputs/example_resume_data.json"))
+data: ResumeData = ResumeData.load_data(
+    Path("ResumeGenerator/example/inputs/example_resume_data.json")
+)
 
 
 @app.get("/resume/data")

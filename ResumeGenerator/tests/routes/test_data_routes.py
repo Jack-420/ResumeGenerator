@@ -1,4 +1,4 @@
-import json
+from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
@@ -8,11 +8,12 @@ from ResumeGenerator.src.data import ResumeData
 
 client = TestClient(app)
 
-# Load the expected data from the JSON file
-with open(
-    "/home/encryptedbee/tesla/projects/ResumeGenerator/ResumeGenerator/inputs/example_resume_data.json"
-) as f:
-    expected_data = ResumeData(**json.load(f)).model_dump()
+
+expected_data = ResumeData.load_data(
+    Path(
+        "/home/encryptedbee/tesla/projects/ResumeGenerator/ResumeGenerator/example/inputs/example_resume_data.json"
+    )
+).model_dump()
 
 
 def test_read_resume():

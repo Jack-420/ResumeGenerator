@@ -18,9 +18,6 @@ def test_create_resume_single_column_photo():
     output_path = output_path.with_suffix(".pdf")
     assert output_path.exists()
 
-    # Clean up the output file
-    output_path.unlink()
-
 
 def test_create_resume_single_column_nophoto():
     # Set the paths
@@ -34,9 +31,6 @@ def test_create_resume_single_column_nophoto():
 
     # Check that the output file exists
     assert output_path.exists()
-
-    # Clean up the output file
-    output_path.unlink()
 
 
 def test_create_resume_empty_json():
