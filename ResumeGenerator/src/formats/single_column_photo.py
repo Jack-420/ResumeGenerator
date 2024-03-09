@@ -28,7 +28,7 @@ def set_resume_header(doc: Document, data: PersonalInfo):
             Command(
                 "includegraphics",
                 arguments=[data.photo],
-                options="width=5cm",
+                options="width=3.6cm",
             )
         )
 
