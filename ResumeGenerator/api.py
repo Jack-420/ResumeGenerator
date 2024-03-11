@@ -1,5 +1,8 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+from .src.routes import base, data, resume
 
-from .src.routes import *
+app = FastAPI()
+app.include_router(base.router)
+app.include_router(data.router)
+app.include_router(resume.router)
