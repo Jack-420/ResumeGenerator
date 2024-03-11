@@ -9,7 +9,7 @@ from ResumeGenerator.src.data import ResumeData
 client = TestClient(app)
 
 
-expected_data = ResumeData.load_data(
+expected_data = ResumeData.read_from_file(
     Path("ResumeGenerator/example/inputs/example_resume_data.json")
 ).model_dump()
 

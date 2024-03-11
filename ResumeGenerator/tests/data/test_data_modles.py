@@ -194,7 +194,7 @@ def test_load_data():
         json.dump(resume_data.model_dump(), json_file, indent=4)
 
     # Load the data from the file
-    loaded_data = ResumeData.load_data(path)
+    loaded_data = ResumeData.read_from_file(path)
     assert isinstance(loaded_data, ResumeData)
 
     # Clean up the temporary file
