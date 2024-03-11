@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from .data import ResumeData
-from .formats import (
+from .resume_templates import (
     ResumeTemplate,
     single_column_nophoto_resume,
     single_column_photo_resume,

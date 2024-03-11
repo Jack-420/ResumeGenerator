@@ -1,7 +1,7 @@
 from typing import KeysView
 
 from ...api import app
-from ..formats import ResumeTemplate
+from ..resume_templates import ResumeTemplate
 
 
 @app.get("/formats")
