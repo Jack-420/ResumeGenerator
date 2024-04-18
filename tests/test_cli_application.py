@@ -1,5 +1,3 @@
-# FILEPATH: /home/encryptedbee/tesla/projects/ResumeGenerator/ResumeGenerator/tests/test_cli.py
-
 from argparse import Namespace
 from pathlib import Path
 from unittest.mock import patch

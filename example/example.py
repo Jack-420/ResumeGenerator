@@ -1,6 +1,7 @@
 from pathlib import Path
 
-from src import ResumeTemplate, create_resume
+from ..src.ResumeGenerator.resume_generator import create_resume
+from ..src.ResumeGenerator.resume_templates import ResumeTemplate
 
 if __name__ == "__main__":
     create_resume(
