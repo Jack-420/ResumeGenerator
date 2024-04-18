@@ -1,6 +1,7 @@
 from pathlib import Path
 
-from ...api import app
+from fastapi import APIRouter
+
 from ..data import (
     Achievement,
     ContactInfo,
@@ -10,47 +11,54 @@ from ..data import (
     Project,
     ResumeData,
     Skill,
-    load_data,
 )
 
-data: ResumeData = load_data(Path("ResumeGenerator/inputs/example_resume_data.json"))
+data: ResumeData = ResumeData.read_from_file(
+    Path("ResumeGenerator/example/inputs/example_resume_data.json")
+)
+
+router = APIRouter(
+    prefix="/data",
+    tags=["data"],
+    responses={404: {"description": "Not found"}},
+)
 
 
-@app.get("/resume/data")
+@router.get("/")
 def read_resume() -> ResumeData:
     return data
 
 
-@app.get("/resume/data/personal_info")
+@router.get("/personal_info")
 def read_personal_info() -> PersonalInfo:
     return data.personal_info
 
 
-@app.get("/resume/data/personal_info/contact_infos")
+@router.get("/personal_info/contact_infos")
 def read_contact_infos() -> list[ContactInfo]:
     return data.personal_info.contact_infos
 
 
-@app.get("/resume/data/educations")
+@router.get("/educations")
 def read_educations() -> list[Education]:
     return data.educations
 
 
-@app.get("/resume/data/skills")
+@router.get("/skills")
 def read_skills() -> list[Skill]:
     return data.skills
 
 
-@app.get("/resume/data/experience")
+@router.get("/experience")
 def read_experience() -> list[Experience]:
     return data.experience
 
 
-@app.get("/resume/data/projects")
+@router.get("/projects")
 def read_projects() -> list[Project]:
     return data.projects
 
 
-@app.get("/resume/data/achievements")
+@router.get("/achievements")
 def read_achievements() -> list[Achievement]:
     return data.achievements

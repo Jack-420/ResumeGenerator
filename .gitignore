@@ -1,8 +1,10 @@
 # self defined
 .vscode/
+.dev_utils/
 ResumeGenerator/example/inputs/resume_data.json
 ResumeGenerator/example/inputs/test_resume_data.json
 ResumeGenerator/example/inputs/amulya.jpg
+ResumeGenerator/example/personal_data
 *.aux
 *.fdb_latexmk
 *.fls

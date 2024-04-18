@@ -50,7 +50,7 @@ def create_document(data: ResumeData) -> Document:
     latex = Document(documentclass="article", document_options=["letterpaper", "11pt"])
 
     with open(
-        "ResumeGenerator/src/formats/single_column_nophoto_preamble.tex",
+        "ResumeGenerator/src/resume_templates/single_column_nophoto_preamble.tex",
         "r",
         encoding="utf-8",
     ) as file:

@@ -1,4 +1,4 @@
-from .modles import (
+from .models import (
     Achievement,
     Address,
     ContactInfo,

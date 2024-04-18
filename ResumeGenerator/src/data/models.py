@@ -55,14 +55,14 @@ class Experience(BaseModel):
     organization: str
     position: str
     date: str
-    link: Optional[AnyUrlStr]
+    link: Optional[AnyUrlStr] = ""
     descriptions: List[str]
     technologies: List[str]
 
 
 class Project(BaseModel):
     name: str
-    link: Optional[AnyUrlStr]
+    link: Optional[AnyUrlStr] = ""
     technologies: List[str]
     description: str
 
@@ -82,25 +82,14 @@ class ResumeData(BaseModel):
     achievements: List[Achievement]
 
     @staticmethod
-    def load_data(path: Path) -> ResumeData:
+    def read_from_file(path: Path) -> ResumeData:
         with path.open("r", encoding="utf-8") as json_file:
             json_data: dict = json.load(json_file)
             return ResumeData(**json_data)
 
     def data_for_latex(self) -> ResumeData:
-        data_dict = self.model_dump()
-        self.__replace_hash_with_latex_hash(data_dict)
-        return ResumeData(**data_dict)
-
-    def __replace_hash_with_latex_hash(self, data: dict):
-        for key, value in data.items():
-            if isinstance(value, dict):
-                self.__replace_hash_with_latex_hash(value)
-            elif isinstance(value, list):
-                if isinstance(value[0], str):
-                    data[key] = [item.replace("#", "\\#") for item in value]
-                for item in value:
-                    if isinstance(item, dict):
-                        self.__replace_hash_with_latex_hash(item)
-            elif isinstance(value, str):
-                data[key] = value.replace("#", "\\#")
+        LATEX_ESCAPE_CHARS = ["#", "%"]
+        json_str = self.model_dump_json()
+        for char in LATEX_ESCAPE_CHARS:
+            json_str = json_str.replace(char, rf"\\{char}")
+        return ResumeData(**json.loads(json_str))
