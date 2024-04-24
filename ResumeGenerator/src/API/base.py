@@ -25,11 +25,11 @@ def read_root():
 #         f"&access_type=offline"  # Optional for refresh tokens
 #     }
 
-templates = Jinja2Templates(directory="templates")
+# templates = Jinja2Templates(directory="templates")
 
 
-@app.get("/", response_class=HTMLResponse)
-async def read_item(request: Request, id: str):
-    return templates.TemplateResponse(
-        request=request, name="index.html", context={"id": id}
-    )
+# @app.get("/", response_class=HTMLResponse)
+# async def read_item(request: Request, id: str):
+#     return templates.TemplateResponse(
+#         request=request, name="index.html", context={"id": id}
+#     )

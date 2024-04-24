@@ -2,7 +2,7 @@ from pathlib import Path
 
 from fastapi import APIRouter
 
-from ..data import (
+from ..core.models import (
     Achievement,
     ContactInfo,
     Education,

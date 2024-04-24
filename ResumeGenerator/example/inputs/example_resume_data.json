@@ -1,7 +1,7 @@
 {
 	"personal_info": {
 		"name": "John Doe",
-		"photo": "example/inputs/john_doe.jpeg",
+		"photo": "ResumeGenerator/example/inputs/john_doe.jpeg",
 		"address": {
 			"line1": "123 Main St",
 			"line2": "",
