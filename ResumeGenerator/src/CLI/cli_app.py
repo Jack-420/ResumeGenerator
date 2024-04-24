@@ -2,7 +2,7 @@ import argparse
 from argparse import Namespace
 from pathlib import Path
 
-from src.ResumeGenerator import ResumeTemplate, create_resume
+from src.core import ResumeTemplate, create_resume
 
 
 def list_templates() -> None:

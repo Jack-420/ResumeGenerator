@@ -2,7 +2,7 @@ from typing import List
 
 from pylatex import Command, Document, NoEscape, Section, VerticalSpace
 
-from ..data import Achievement, Education, Experience, Project, Skill
+from ..models import Achievement, Education, Experience, Project, Skill
 
 
 def add_educations(doc: Document, educations: List[Education]) -> None:
@@ -103,7 +103,7 @@ def add_projects(doc: Document, projects: List[Project]):
                 + str(proj.link)
                 + r"}{\underline{"
                 + proj.name
-                + r"System}}} $|$ \footnotesize\emph{"
+                + r"}}} $|$ \footnotesize\emph{"
                 + ", ".join(proj.technologies)
                 + r"}}{}"
             )

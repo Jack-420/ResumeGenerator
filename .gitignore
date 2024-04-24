@@ -1,11 +1,13 @@
 # self defined
 .vscode/
 .dev_utils/
-example/personal_data*
+ResumeGenerator/example/personal_data*
 *.aux
 *.fdb_latexmk
 *.fls
 *.out
+resumegenerator-6a627-firebase-adminsdk-62uz7-77d8182b2e.json
+ResumeGenerator.code-workspace
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

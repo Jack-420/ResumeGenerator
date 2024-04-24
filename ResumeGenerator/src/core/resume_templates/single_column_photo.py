@@ -9,7 +9,7 @@ from pylatex import (
     VerticalSpace,
 )
 
-from ..data import PersonalInfo, ResumeData
+from ..models import PersonalInfo, ResumeData
 from .__single_column_content import (
     add_achievements,
     add_educations,
@@ -59,7 +59,7 @@ def create_document(data: ResumeData) -> Document:
     latex = Document(documentclass="article", document_options=["letterpaper", "11pt"])
 
     with open(
-        "src/ResumeGenerator/resume_templates/single_column_photo_preamble.tex",
+        "ResumeGenerator/src/core/resume_templates/single_column_photo_preamble.tex",
         "r",
         encoding="utf-8",
     ) as file:

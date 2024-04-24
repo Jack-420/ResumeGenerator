@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from .data import ResumeData
+from .models import ResumeData
 from .resume_templates import (
     ResumeTemplate,
     single_column_nophoto_resume,
@@ -14,9 +14,6 @@ def create_resume(
 
     data_obj = ResumeData.read_from_file(datafile_path)
     latex_data_obj = data_obj.data_for_latex()
-
-    print(f"{latex_data_obj.personal_info.name=}")
-    print(f"{latex_data_obj.projects[2].technologies=}")
 
     if resume_format is ResumeTemplate.SINGLE_COLUMN_PHOTO:
         latex_resume = single_column_photo_resume(latex_data_obj)
