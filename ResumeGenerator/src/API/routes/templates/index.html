@@ -34,6 +34,7 @@
     <h2>Login info:</h2>
     {% if user_data %}
       <dl>
+        <dt>token</dt><dd>{{ token }}</dd>
         <dt>Name</dt><dd>{{ user_data['name'] }}</dd>
         <dt>Email</dt><dd>{{ user_data['email'] }}</dd>
       </dl>

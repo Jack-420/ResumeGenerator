@@ -2,7 +2,7 @@ from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Request
 
-from ..core.models import (
+from ...core.models import (
     Achievement,
     ContactInfo,
     Education,
@@ -12,8 +12,8 @@ from ..core.models import (
     ResumeData,
     Skill,
 )
-from .base import authenticate_with_token
-from .database import get_all_resume, save_resume
+from ..authentication import authenticate_with_token
+from ..database import get_all_resume, save_resume
 
 data: ResumeData = ResumeData.read_from_file(
     Path("ResumeGenerator/example/inputs/example_resume_data.json")

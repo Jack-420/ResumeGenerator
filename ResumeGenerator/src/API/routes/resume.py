@@ -2,7 +2,7 @@ from typing import KeysView
 
 from fastapi import APIRouter
 
-from ..core.resume_templates import ResumeTemplate
+from ...core.resume_templates import ResumeTemplate
 
 router = APIRouter(
     prefix="/resumes",
