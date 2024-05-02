@@ -1,20 +1,20 @@
-from pathlib import Path
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import HTMLResponse
-from fastapi.security import HTTPAuthorizationCredentials
-from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
-from ..authentication import AuthClaims, FirebaseOAuthBearer, authenticate_with_token
-
-BASE_DIR = Path(__file__).resolve().parent
-templates = Jinja2Templates(directory=str(Path(BASE_DIR, "templates")))
-
-token_auth_scheme = FirebaseOAuthBearer()
+from ..authentication import AuthClaims, authenticate_with_token
+from . import templates, token_auth_scheme
 
 router = APIRouter()
 
+
+router.mount(
+    "/static",
+    StaticFiles(directory="ResumeGenerator/src/API/static"),
+    name="static",
+)
 
 @router.get("/")
 async def authenticate(request: Request):
@@ -55,6 +55,6 @@ async def login_page(request: Request):
 
 
 @router.get("/private")
-def private(claims: Annotated[AuthClaims, Depends(token_auth_scheme)]):
+def private(auth_claims: Annotated[AuthClaims, Depends(token_auth_scheme)]):
 
     return {"message": "You are authorized to access this route"}
