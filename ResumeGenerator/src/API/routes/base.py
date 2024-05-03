@@ -2,19 +2,12 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
 
-from ..authentication import AuthClaims, authenticate_with_token
+from ..authentication import AuthClaims, FirebaseOAuthBearer, authenticate_with_token
 from . import templates, token_auth_scheme
 
 router = APIRouter()
 
-
-router.mount(
-    "/static",
-    StaticFiles(directory="ResumeGenerator/src/API/static"),
-    name="static",
-)
 
 @router.get("/")
 async def authenticate(request: Request):
