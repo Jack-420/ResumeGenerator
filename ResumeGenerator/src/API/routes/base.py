@@ -1,30 +1,13 @@
-from typing import Annotated
-
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 
-from ..authentication import AuthClaims, FirebaseOAuthBearer, authenticate_with_token
-from . import templates, token_auth_scheme
+from ..authentication import authenticate_with_token
+from . import templates
 
 router = APIRouter()
 
 
-@router.get("/")
-async def authenticate(request: Request):
-    id_token = request.cookies.get("token")
-
-    if not id_token:
-        raise HTTPException(status_code=401, detail="No token provided")
-
-    try:
-        claims = await authenticate_with_token(id_token)
-    except ValueError as exc:
-        raise HTTPException(status_code=401, detail="Unauthorized") from exc
-
-    return claims
-
-
-@router.get("/login", response_class=HTMLResponse)
+@router.get("/", response_class=HTMLResponse)
 async def login_page(request: Request):
     claims = None
     error_message = None
@@ -45,9 +28,3 @@ async def login_page(request: Request):
             "token": request.cookies.get("token"),
         },
     )
-
-
-@router.get("/private")
-def private(auth_claims: Annotated[AuthClaims, Depends(token_auth_scheme)]):
-
-    return {"message": "You are authorized to access this route"}

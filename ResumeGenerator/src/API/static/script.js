@@ -37,7 +37,7 @@ window.addEventListener('load', function () {
 
     ],
     // Terms of service url.
-    tosUrl: '<your-tos-url>'
+    tosUrl: 'https://www.freeprivacypolicy.com/live/2d76b985-b092-4056-a28f-29a853b9a022'
   };
 
   firebase.auth().onAuthStateChanged(function (user) {
