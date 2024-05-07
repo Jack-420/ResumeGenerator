@@ -1,19 +1,19 @@
 from pathlib import Path
+from typing import Annotated
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, status
+from google.protobuf.timestamp_pb2 import Timestamp
 
-from ...core.models import (
-    Achievement,
-    ContactInfo,
-    Education,
-    Experience,
-    PersonalInfo,
-    Project,
-    ResumeData,
-    Skill,
+from ...core.models import ResumeData
+from ..authentication import AuthClaims
+from ..database import (
+    delete_resume,
+    get_all_resume,
+    get_resume,
+    save_resume,
+    update_resume,
 )
-from ..authentication import authenticate_with_token
-from ..database import get_all_resume, save_resume
+from . import token_auth_scheme
 
 data: ResumeData = ResumeData.read_from_file(
     Path("ResumeGenerator/example/inputs/example_resume_data.json")
@@ -27,59 +27,88 @@ router = APIRouter(
 
 
 @router.get("/")
-async def read_resume(request: Request) -> ResumeData:
+async def read_all_resumes(
+    auth_claims: Annotated[AuthClaims, Depends(token_auth_scheme)]
+) -> list[str]:
     try:
-        claims = await authenticate_with_token(request)
-    except ValueError as exc:
-        raise HTTPException(status_code=401, detail="Unauthorized") from exc
-
-    try:
-        data = get_all_resume(claims["user_id"])
+        data = get_all_resume(auth_claims["user_id"])
     except KeyError as exc:
-        raise HTTPException(status_code=404, detail="Resume not found") from exc
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Resume not found"
+        ) from exc
+
+    if len(data) == 0:
+        raise HTTPException(
+            status_code=status.HTTP_204_NO_CONTENT, detail="No resumes found"
+        )
 
     return data
 
 
-@router.post("/")
-async def create_base_resume(request: Request, resume_data: ResumeData):
+@router.get("/{resume_name}")
+async def read_resume_by_name(
+    resume_name: str,
+    auth_claims: Annotated[AuthClaims, Depends(token_auth_scheme)],
+) -> ResumeData:
     try:
-        claims = await authenticate_with_token(request)
-    except ValueError as exc:
-        raise HTTPException(status_code=401, detail="Unauthorized") from exc
-    save_resume(claims["user_id"], resume_data.model_dump())
+        data = get_resume(auth_claims["user_id"], resume_name)
+    except (KeyError, ValueError) as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)
+        ) from exc
+    return ResumeData(**data)
 
 
-@router.get("/personal_info")
-def read_personal_info() -> PersonalInfo:
-    return data.personal_info
+@router.post("/{resume_name}", status_code=status.HTTP_201_CREATED)
+async def create_new_resume_by_name(
+    resume_name: str,
+    auth_claims: Annotated[AuthClaims, Depends(token_auth_scheme)],
+    resume_data: ResumeData,
+) -> ResumeData:
+    try:
+        saved_data = save_resume(
+            auth_claims["user_id"], resume_name, resume_data.model_dump()
+        )
+    except KeyError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)
+        ) from exc
+
+    if not saved_data:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Resume not found"
+        )
+
+    return ResumeData(**saved_data)
 
 
-@router.get("/personal_info/contact_infos")
-def read_contact_infos() -> list[ContactInfo]:
-    return data.personal_info.contact_infos
+@router.patch("/{resume_name}", status_code=status.HTTP_200_OK)
+async def update_resume_by_name(
+    resume_name: str,
+    auth_claims: Annotated[AuthClaims, Depends(token_auth_scheme)],
+    resume_data: ResumeData,
+) -> ResumeData:
+    try:
+        patched_data = update_resume(
+            auth_claims["user_id"], resume_name, resume_data.model_dump()
+        )
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    if not patched_data:
+        raise HTTPException(status_code=404, detail="Resume not found")
+
+    return ResumeData(**patched_data)
 
 
-@router.get("/educations")
-def read_educations() -> list[Education]:
-    return data.educations
+@router.delete("/{resume_name}", status_code=status.HTTP_200_OK)
+async def remove_resume_by_name(
+    resume_name: str,
+    auth_claims: Annotated[AuthClaims, Depends(token_auth_scheme)],
+) -> dict[str, str]:
+    try:
+        time = delete_resume(auth_claims["user_id"], resume_name)
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
 
-
-@router.get("/skills")
-def read_skills() -> list[Skill]:
-    return data.skills
-
-
-@router.get("/experience")
-def read_experience() -> list[Experience]:
-    return data.experience
-
-
-@router.get("/projects")
-def read_projects() -> list[Project]:
-    return data.projects
-
-
-@router.get("/achievements")
-def read_achievements() -> list[Achievement]:
-    return data.achievements
+    return {"deleted_at": str(time)}
