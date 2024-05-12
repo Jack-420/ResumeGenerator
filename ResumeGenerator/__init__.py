@@ -1,1 +1,1 @@
-from .src.API import app
+from .src import app
