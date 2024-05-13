@@ -1,13 +1,6 @@
-import firebase_admin
-from firebase_admin import credentials, firestore
 from google.cloud.firestore_v1 import DocumentReference, DocumentSnapshot
 
-cred = credentials.Certificate(
-    "resumegenerator-6a627-firebase-adminsdk-62uz7-77d8182b2e.json"
-)
-firebase_admin.initialize_app(cred)
-db = firestore.client()
-users_collection = db.collection("users")
+from .constants import users_collection
 
 
 def get_all_resume(user_id: str) -> list[str]:

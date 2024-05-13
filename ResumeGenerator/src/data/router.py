@@ -4,14 +4,14 @@ from fastapi import APIRouter, Depends, HTTPException, status
 
 from ..auth.dependencies import get_current_user
 from ..auth.models import AuthClaims
-from ..database import (
+from ..resume.models import ResumeData
+from .services import (
     delete_resume,
     get_all_resume,
     get_resume,
     save_resume,
     update_resume,
 )
-from ..resume.models import ResumeData
 
 router = APIRouter(
     prefix="/data",
