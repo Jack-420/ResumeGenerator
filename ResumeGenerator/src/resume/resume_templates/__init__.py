@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from enum import Enum
 from typing import Type
 
 from pylatex import Document
@@ -93,7 +92,3 @@ class SingleColumnPhoto(ResumeTemplate):
     @classmethod
     def create_document(cls, data: ResumeData) -> Document:
         return single_column_content.create_document_with_photo(data)
-
-# ResumeTemplateEnum = Enum(
-#     "ResumeTemplateEnum", {k: k for k in ResumeTemplate.available_templates()}
-# )
