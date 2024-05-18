@@ -1,13 +1,18 @@
+from __future__ import annotations
+
 from typing import Type
 
 from pylatex import Document
 
-from ..models import ResumeData
+from ...data.models import ResumeData
+from ..models import ResumeTemplateMetadata
 from . import single_column_content
 
 
 class ResumeTemplate:
     __subclasses: dict[str, Type["ResumeTemplate"]] = {}
+
+    metadata: ResumeTemplateMetadata
 
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
@@ -21,7 +26,7 @@ class ResumeTemplate:
         return list(cls.__subclasses.keys())
 
     @classmethod
-    def get_template_by_name(cls, name: str):
+    def get_template_by_name(cls, name: str) -> type[ResumeTemplate]:
         try:
             return cls.__subclasses[name]
         except KeyError as err:
@@ -32,12 +37,46 @@ class ResumeTemplate:
 
 
 class SingleColumnNoPhoto(ResumeTemplate):
+
+    metadata = ResumeTemplateMetadata(
+        display_name="Single Column (No Photo)",
+        details="A simple black-and-white single column resume format with no photo. Best for those who want a clean and simple resume.",
+        number_format_columns=1,
+        includes_photo=False,
+        headings=[
+            "Name",
+            "Contacts",
+            "Education",
+            "Experience",
+            "Skills",
+            "Projects",
+            "Achievements",
+        ],
+    )
+
     @classmethod
     def create_document(cls, data: ResumeData) -> Document:
         return single_column_content.create_document_with_nophoto(data)
 
 
 class SingleColumnPhoto(ResumeTemplate):
+
+    metadata = ResumeTemplateMetadata(
+        display_name="Single Column (With Photo)",
+        details="A simple black-and-white single column resume format with a photo. Best for those who want a clean and simple resume.",
+        number_format_columns=1,
+        includes_photo=True,
+        headings=[
+            "Name",
+            "Contacts",
+            "Education",
+            "Experience",
+            "Skills",
+            "Projects",
+            "Achievements",
+        ],
+    )
+
     @classmethod
     def create_document(cls, data: ResumeData) -> Document:
         return single_column_content.create_document_with_photo(data)
