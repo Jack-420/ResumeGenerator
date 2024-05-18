@@ -2,9 +2,9 @@
 
 [x] Fast API restructuring with ApiRoutes
 
-[ ] Authentication
+[X] Authentication
 
-[ ] saving data in firebase App
+[X] saving data in firebase App
 
 [ ] saving google files in G-drive
 

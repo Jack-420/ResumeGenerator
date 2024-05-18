@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from enum import Enum
 from typing import Type
 
 from pylatex import Document
@@ -31,6 +32,18 @@ class ResumeTemplate:
             return cls.__subclasses[name]
         except KeyError as err:
             raise ValueError(f"No template found with name {name}") from err
+
+    @classmethod
+    def template_exists(cls, name: str) -> bool:
+        return name in cls.__subclasses
+
+    @classmethod
+    def get_template_metadata(cls, name: str) -> ResumeTemplateMetadata:
+        try:
+            template = cls.get_template_by_name(name)
+        except ValueError as err:
+            raise ValueError(f"No template found with name {name}") from err
+        return template.metadata
 
     @classmethod
     def create_document(cls, data: ResumeData) -> Document: ...
@@ -80,3 +93,7 @@ class SingleColumnPhoto(ResumeTemplate):
     @classmethod
     def create_document(cls, data: ResumeData) -> Document:
         return single_column_content.create_document_with_photo(data)
+
+# ResumeTemplateEnum = Enum(
+#     "ResumeTemplateEnum", {k: k for k in ResumeTemplate.available_templates()}
+# )

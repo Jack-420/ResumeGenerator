@@ -2,17 +2,19 @@ import argparse
 from argparse import Namespace
 from pathlib import Path
 
-from .resume import ResumeTemplate, create_resume
+from .resume import ResumeTemplateEnum, create_resume_from_file
 
 
 def list_templates() -> None:
     print("The available resume formats are:")
-    for i, template in enumerate(ResumeTemplate.available_templates(), start=1):
+    for i, template in enumerate(
+        (template.value for template in ResumeTemplateEnum), start=1
+    ):
         print(f"\t{i}. {template}")
 
 
 def generate_resume(args: Namespace) -> None:
-    create_resume(
+    create_resume_from_file(
         args.datafile_path,
         args.output_path,
         args.template,
@@ -52,8 +54,8 @@ def parse_args() -> Namespace:
     generate_parser.add_argument(
         "template",
         metavar="RESUME_TEMPLATE",
-        type=str,
-        choices=ResumeTemplate.available_templates(),
+        type=lambda x: ResumeTemplateEnum[x],
+        choices=list(ResumeTemplateEnum),
         help="Template of the output resume format.",
     )
 
@@ -80,7 +82,7 @@ def parse_args() -> Namespace:
     return parser.parse_args()
 
 
-def main():
+def main() -> None:
     args: Namespace = parse_args()
     if args.subcommand == "templates":
         list_templates()
