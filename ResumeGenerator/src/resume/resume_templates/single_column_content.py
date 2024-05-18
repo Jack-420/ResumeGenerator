@@ -12,7 +12,7 @@ from pylatex import (
     VerticalSpace,
 )
 
-from ..models import (
+from ...data.models import (
     Achievement,
     Education,
     Experience,

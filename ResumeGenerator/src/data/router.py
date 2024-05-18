@@ -2,7 +2,6 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, status
 
-from ..resume.models import ResumeData
 from .dependencies import (
     delete_resume,
     get_all_resume,
@@ -10,6 +9,7 @@ from .dependencies import (
     patch_resume,
     post_resume,
 )
+from .models import ResumeData
 
 router = APIRouter(
     prefix="/data",

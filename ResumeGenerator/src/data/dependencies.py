@@ -4,7 +4,7 @@ from fastapi import Depends, HTTPException, status
 
 from ..auth.dependencies import get_current_user
 from ..auth.models import AuthClaims
-from ..resume.models import ResumeData
+from .models import ResumeData
 from .services import (
     read_all_resume,
     read_resume,

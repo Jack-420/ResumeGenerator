@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from .models import ResumeData
+from ..data.models import ResumeData
 from .resume_templates import ResumeTemplate
 
 
