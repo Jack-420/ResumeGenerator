@@ -1,16 +1,14 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, status
 
-from ..auth.dependencies import get_current_user
-from ..auth.models import AuthClaims
 from ..resume.models import ResumeData
-from .services import (
+from .dependencies import (
     delete_resume,
     get_all_resume,
     get_resume,
-    save_resume,
-    update_resume,
+    patch_resume,
+    post_resume,
 )
 
 router = APIRouter(
@@ -21,88 +19,35 @@ router = APIRouter(
 
 
 @router.get("/")
-async def read_all_resumes(
-    auth_claims: Annotated[AuthClaims, Depends(get_current_user)]
+async def all_resumes(
+    resume_names: Annotated[list[str], Depends(get_all_resume)]
 ) -> list[str]:
-    try:
-        data = get_all_resume(auth_claims.user_id)
-    except KeyError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Resume not found"
-        ) from exc
-
-    if len(data) == 0:
-        raise HTTPException(
-            status_code=status.HTTP_204_NO_CONTENT, detail="No resumes found"
-        )
-
-    return data
+    return resume_names
 
 
 @router.get("/{resume_name}")
-async def read_resume_by_name(
-    resume_name: str,
-    auth_claims: Annotated[AuthClaims, Depends(get_current_user)],
+async def resume_by_name(
+    resume: Annotated[ResumeData, Depends(get_resume)]
 ) -> ResumeData:
-    try:
-        data = get_resume(auth_claims.user_id, resume_name)
-    except (KeyError, ValueError) as exc:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)
-        ) from exc
-    return ResumeData(**data)
+    return resume
 
 
 @router.post("/{resume_name}", status_code=status.HTTP_201_CREATED)
 async def create_new_resume_by_name(
-    resume_name: str,
-    auth_claims: Annotated[AuthClaims, Depends(get_current_user)],
-    resume_data: ResumeData,
+    posted_resume: Annotated[ResumeData, Depends(post_resume)],
 ) -> ResumeData:
-    try:
-        saved_data = save_resume(
-            auth_claims.user_id, resume_name, resume_data.model_dump()
-        )
-    except KeyError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)
-        ) from exc
-
-    if not saved_data:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Resume not found"
-        )
-
-    return ResumeData(**saved_data)
+    return posted_resume
 
 
 @router.patch("/{resume_name}", status_code=status.HTTP_200_OK)
 async def update_resume_by_name(
-    resume_name: str,
-    auth_claims: Annotated[AuthClaims, Depends(get_current_user)],
-    resume_data: ResumeData,
+    patched_resume: Annotated[ResumeData, Depends(patch_resume)],
 ) -> ResumeData:
-    try:
-        patched_data = update_resume(
-            auth_claims.user_id, resume_name, resume_data.model_dump()
-        )
-    except KeyError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
-
-    if not patched_data:
-        raise HTTPException(status_code=404, detail="Resume not found")
-
-    return ResumeData(**patched_data)
+    return patched_resume
 
 
 @router.delete("/{resume_name}", status_code=status.HTTP_200_OK)
 async def remove_resume_by_name(
-    resume_name: str,
-    auth_claims: Annotated[AuthClaims, Depends(get_current_user)],
+    removed_at_time: Annotated[str, Depends(delete_resume)]
 ) -> dict[str, str]:
-    try:
-        time = delete_resume(auth_claims.user_id, resume_name)
-    except KeyError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
-
-    return {"deleted_at": time}
+    return {"deleted_at": removed_at_time}

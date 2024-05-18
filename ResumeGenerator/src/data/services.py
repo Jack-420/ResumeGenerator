@@ -3,14 +3,14 @@ from google.cloud.firestore_v1 import DocumentReference, DocumentSnapshot
 from .constants import users_collection
 
 
-def get_all_resume(user_id: str) -> list[str]:
+def read_all_resume(user_id: str) -> list[str]:
     docs: list[DocumentSnapshot] = (
         users_collection.document(user_id).collection("resume").get()
     )
     return [doc.id for doc in docs]
 
 
-def get_resume(user_id: str, resume_name: str) -> dict:
+def read_resume(user_id: str, resume_name: str) -> dict:
     doc: DocumentSnapshot = (
         users_collection.document(user_id)
         .collection("resume")
@@ -41,7 +41,7 @@ def save_resume(user_id: str, resume_name: str, resume_data: dict):
     return doc_ref.get().to_dict()
 
 
-def delete_resume(user_id: str, resume_name: str) -> str:
+def remove_resume(user_id: str, resume_name: str) -> str:
     doc_ref: DocumentReference = (
         users_collection.document(user_id).collection("resume").document(resume_name)
     )
