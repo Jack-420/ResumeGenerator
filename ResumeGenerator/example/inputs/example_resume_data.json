@@ -35,6 +35,11 @@
 				"link": "mailto:johndoe@example.com",
 				"fa_icon": "envelope"
 			}
+		],
+		"short_infos": [
+			"B.E - Computer Science",
+			"Software Engineering",
+			"Example University, Country"
 		]
 	},
 	"educations": [

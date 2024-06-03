@@ -31,6 +31,7 @@ class PersonalInfo(BaseModel):
     photo: AbsoluteFilePath
     address: Address
     contact_infos: List[ContactInfo]
+    short_infos: List[str]
 
 
 class Marks(BaseModel):
