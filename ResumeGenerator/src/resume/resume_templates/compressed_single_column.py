@@ -3,8 +3,8 @@ from typing import Union
 from pylatex import Command, Document, NoEscape, Package, Section, VerticalSpace
 from pylatex.base_classes import LatexObject
 
-from ....data.constants import AnyUrlStr
-from ....data.models import (
+from ...data.constants import AnyUrlStr
+from ...data.models import (
     Achievement,
     Education,
     Experience,
@@ -12,7 +12,7 @@ from ....data.models import (
     ResumeData,
     Skill,
 )
-from ..utils import CustomCommand, CustomContextCommand
+from .utils import CustomCommand, CustomContextCommand
 
 CommandArg = Union[str, LatexObject, AnyUrlStr, int]
 
