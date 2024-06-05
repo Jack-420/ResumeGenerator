@@ -48,7 +48,7 @@ class ResumeTemplate:
     def create_document(cls, data: ResumeData) -> Document: ...
 
 
-class SingleColumnNoPhoto(ResumeTemplate):
+class SingleColumnNoPhotoTemplate(ResumeTemplate):
 
     metadata = ResumeTemplateMetadata(
         display_name="Single Column (No Photo)",
@@ -71,7 +71,7 @@ class SingleColumnNoPhoto(ResumeTemplate):
         return single_column_content.create_document_with_nophoto(data)
 
 
-class SingleColumnPhoto(ResumeTemplate):
+class SingleColumnPhotoTemplate(ResumeTemplate):
 
     metadata = ResumeTemplateMetadata(
         display_name="Single Column (With Photo)",
@@ -94,7 +94,7 @@ class SingleColumnPhoto(ResumeTemplate):
         return single_column_content.create_document_with_photo(data)
 
 
-class SingleColumnPhotoCompressed(ResumeTemplate):
+class SingleColumnPhotoCompressedTemplate(ResumeTemplate):
     metadata = ResumeTemplateMetadata(
         display_name="Single Column (With Photo, Compressed)",
         details="A simple black-and-white single column resume format with a photo with compressed spacing and better formatting. Best for those who want a clean and simple resume.",
@@ -156,10 +156,10 @@ class SingleColumnPhotoCompressed(ResumeTemplate):
         return doc
 
 
-class SingleColumnCompressed(ResumeTemplate):
+class SingleColumnCompressedTemplate(ResumeTemplate):
     metadata = ResumeTemplateMetadata(
         display_name="Single Column (With Photo, Compressed)",
-        details="A simple black-and-white single column resume format with a photo with compressed spacing and better formatting. Best for those who want a clean and simple resume.",
+        details="A simple black-and-white single column resume format without a photo with compressed spacing and better formatting. Best for those who want a clean and simple resume.",
         number_format_columns=1,
         includes_photo=True,
         headings=[

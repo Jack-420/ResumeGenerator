@@ -1,4 +1,7 @@
-from pylatex import Document, UnsafeCommand
+import contextlib
+from multiprocessing import context
+
+from pylatex import Document, NoEscape, UnsafeCommand
 from pylatex.base_classes import Arguments, CommandBase
 
 
@@ -24,6 +27,8 @@ class CustomCommand(CommandBase, metaclass=_NewMeta):
     body: str
 
     def __init__(self, *args) -> None:
+        with contextlib.suppress(AttributeError):
+            args = [NoEscape(a) for a in args]
         super().__init__(arguments=Arguments(*args))
 
     @classmethod

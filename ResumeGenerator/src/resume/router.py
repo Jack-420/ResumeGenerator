@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import FileResponse
 
-from ..resume.resume_templates import ResumeTemplate
+from ..resume.resume_templates import Resume
 from .constants import FileResponseData, ResumeTemplateEnum
 from .dependencies import (
     create_resume_from_data,
@@ -21,7 +21,7 @@ router = APIRouter(
 
 @router.get("/templates")
 async def list_templates() -> list[str]:
-    return ResumeTemplate.available_templates()
+    return Resume.available_templates()
 
 
 @router.get("/templates/{template_name}")
@@ -29,7 +29,7 @@ async def read_template_metadata(
     template_name: ResumeTemplateEnum,
 ) -> ResumeTemplateMetadata:
     try:
-        return ResumeTemplate.get_template_metadata(template_name)
+        return Resume.get_template_metadata(template_name)
     except ValueError as err:
         raise HTTPException(status_code=404, detail=str(err)) from err
 
