@@ -1,0 +1,198 @@
+\documentclass[letterpaper,11pt]{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+%
+
+
+% -------------------- PACKAGES --------------------
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+
+\input{glyphtounicode}
+
+% -------------------- FONT --------------------
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-1in} % Default was -.5in
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Subsection formatting
+\titleformat{\subsection}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{\hspace{-.15in}}{0em}{}[\color{black}\vspace{-8pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+% -------------------- CUSTOM COMMANDS --------------------
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\setlength{\footskip}{4.08003pt}
+
+% -------------------- START OF DOCUMENT --------------------
+%
+%
+\begin{document}%
+\normalsize%
+% % -------------------- HEADING --------------------%
+
+\begin{flushright}
+\end{flushright}
+
+\begin{center}
+    \textbf{\Huge \scshape John Doe} \\ \vspace{8pt}
+    \small %
+\faIcon{github} \href{https://github.com/JohnDoe/}{\underline{github.com/JohnDoe/}} $ $
+\faIcon{code} \href{https://johndoeportfolio.com/}{\underline{johndoeportfolio.com/}} $ $
+\faIcon{linkedin} \href{https://www.linkedin.com/in/johndoe/}{\underline{linkedin.com/in/johndoe/}} $ $
+\faIcon{envelope} \href{mailto:johndoe@example.com}{\underline{johndoe@example.com}}%
+\end{center}%
+% % -------------------- EDUCATION --------------------%
+\section{Education}%
+\label{sec:Education}%
+
+%
+\resumeSubHeadingListStart%
+\resumeSubheading{Example University}{2023}{Bachelor of Engineering in Computer Science}{cgpa: 8.5}%
+\vspace*{4pt}%
+\resumeSubheading{High School}{2019}{High School Diploma}{percentage: 95.0}%
+\resumeSubHeadingListEnd%
+% % -------------------- SKILLS --------------------%
+\section{Skills}%
+\label{sec:Skills}%
+
+%
+\begin{itemize}[leftmargin=0.15in, label={}]%
+\small{\item{\textbf{languages}{: JavaScript, Ruby, Swift, PHP, CSS, Go, Rust} \\
+\textbf{technologies}{: Cloud Computing, Blockchain, Augmented Reality, Virtual Reality, Machine Learning} \\
+\textbf{frameworks}{: React, Angular, Vue.js, Ruby on Rails, Node.js, Laravel, Flask, Spring Boot} \\
+\textbf{tools}{: Docker, Kubernetes, Jenkins, Travis CI, Selenium, Jira, Trello, Slack, Asana} \\}}%
+\end{itemize}%
+%% -------------------- EXPERIENCE --------------------%
+\section{Professional Experience}%
+\label{sec:ProfessionalExperience}%
+
+%
+\resumeSubHeadingListStart%
+\resumeProjectHeading{\textbf{\href{https://techinnovators.com/}{\underline{Tech Innovators}}} $|$ \footnotesize\emph{Software Engineer}\vspace{8pt}}{Sep 2023 - Cont.}{\small{Developing innovative solutions for complex business problems}}\\
+{\small{Collaborating with cross-functional teams to define, design, and ship new features}}\\
+{\small{Working on cutting-edge technologies to enhance product performance}}\\
+{\small{React, Node.js, Docker, GraphQL, MongoDB, AWS, Microservices}}%
+\resumeProjectHeading{\textbf{\href{https://aiinsights.com/}{\underline{AI Insights}}} $|$ \footnotesize\emph{Data Scientist}\vspace{8pt}}{Jan 2023 - Aug. 2023}{\small{Analyzing and interpreting complex data sets}}\\
+{\small{Developing and implementing machine learning models}}\\
+{\small{Collaborating with domain experts to identify data-driven insights}}\\
+{\small{Python, TensorFlow, PyTorch, Scikit-Learn, Pandas, NumPy, Matplotlib}}%
+\resumeProjectHeading{\textbf{\href{None}{\underline{Innovation Hub}}} $|$ \footnotesize\emph{UX/UI Designer}\vspace{8pt}}{Jul. 2022 - Dec. 2022}{\small{Creating visually appealing and intuitive user interfaces}}\\
+{\small{Conducting user research and usability testing}}\\
+{\small{Collaborating with development teams to implement design solutions}}\\
+{\small{Figma, Sketch, Adobe XD, InVision, Zeplin, HTML/CSS, React}}%
+\resumeSubHeadingListEnd%
+%% -------------------- PROJECTS --------------------%
+\section{Projects}%
+\label{sec:Projects}%
+
+%
+\resumeSubHeadingListStart%
+\resumeProjectHeading%
+{\textbf{\href{https://github.com/JohnDoe/Smart-Home-Automation}{\underline{Smart Home Automation System}}} $|$ \footnotesize\emph{IoT, Raspberry Pi, Home Assistant, Google Home, Alexa, MQTT}}{}%
+\resumeItemListStart%
+\resumeItem{Automate and control home devices remotely for increased convenience}%
+\resumeItemListEnd%
+\resumeProjectHeading%
+{\textbf{\href{https://github.com/JohnDoe/E-commerce-Platform}{\underline{E-commerce Platform}}} $|$ \footnotesize\emph{React, Node.js, Express, MongoDB, Redux, Stripe API}}{}%
+\resumeItemListStart%
+\resumeItem{Full{-}stack e{-}commerce platform with secure payment integration}%
+\resumeItemListEnd%
+\resumeProjectHeading%
+{\textbf{\href{https://github.com/JohnDoe/AR-Game}{\underline{Augmented Reality Game}}} $|$ \footnotesize\emph{Unity, ARKit, ARCore, C\#, 3D Modeling}}{}%
+\resumeItemListStart%
+\resumeItem{Immersive augmented reality game for mobile devices}%
+\resumeItemListEnd%
+\resumeProjectHeading%
+{\textbf{\href{https://github.com/JohnDoe/Customer-Support-Chatbot}{\underline{Chatbot for Customer Support}}} $|$ \footnotesize\emph{Natural Language Processing, Python, Flask, TensorFlow, Dialogflow}}{}%
+\resumeItemListStart%
+\resumeItem{Intelligent chatbot to assist customers with common queries}%
+\resumeItemListEnd%
+\resumeSubHeadingListEnd%
+%% -------------------- ACHIEVEMENTS --------------------%
+\section{Achievements}%
+\label{sec:Achievements}%
+
+%
+\resumeSubHeadingListStart%
+\resumeProjectHeading%
+{\textbf{Publication} $|$ \footnotesize\emph{Machine Learning in Healthcare}}{Journal of Artificial Intelligence Research, Vol. 25, No. 4, 2023}%
+\resumeProjectHeading%
+{\textbf{Coding Competition} $|$ \footnotesize\emph{CodeChallenge - Tech World}}{2nd Position}%
+\resumeProjectHeading%
+{\textbf{Hackathon} $|$ \footnotesize\emph{Innovate-A-Thon}}{Best Innovation Award}%
+\resumeSubHeadingListEnd%
+\end{document}

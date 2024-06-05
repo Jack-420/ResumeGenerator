@@ -142,7 +142,6 @@ class Education(BaseModel):
         ...,
         title="Status",
         description="Current status of the education (e.g., completed, ongoing)",
-        min_length=1,
         max_length=20,
     )
     year: int = Field(

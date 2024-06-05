@@ -121,6 +121,7 @@
 			"position": "Software Engineer",
 			"date": "Sep 2023 - Cont.",
 			"link": "https://techinnovators.com/",
+			"location": "New York, USA",
 			"descriptions": [
 				"Developing innovative solutions for complex business problems",
 				"Collaborating with cross-functional teams to define, design, and ship new features",
@@ -141,6 +142,7 @@
 			"position": "Data Scientist",
 			"date": "Jan 2023 - Aug. 2023",
 			"link": "https://aiinsights.com/",
+			"location": "Palo Alto, USA",
 			"descriptions": [
 				"Analyzing and interpreting complex data sets",
 				"Developing and implementing machine learning models",
@@ -161,6 +163,7 @@
 			"position": "UX/UI Designer",
 			"date": "Jul. 2022 - Dec. 2022",
 			"link": null,
+			"location": "Atlanta, USA",
 			"descriptions": [
 				"Creating visually appealing and intuitive user interfaces",
 				"Conducting user research and usability testing",
@@ -181,6 +184,9 @@
 		{
 			"name": "Smart Home Automation System",
 			"link": "https://github.com/JohnDoe/Smart-Home-Automation",
+			"type": "Team project",
+			"organization": "Organization Name",
+			"time": "summer 20XX",
 			"technologies": [
 				"IoT",
 				"Raspberry Pi",
@@ -194,6 +200,9 @@
 		{
 			"name": "E-commerce Platform",
 			"link": "https://github.com/JohnDoe/E-commerce-Platform",
+			"type": "Team project",
+			"organization": "Organization Name",
+			"time": "summer 20XX",
 			"technologies": [
 				"React",
 				"Node.js",
@@ -207,6 +216,9 @@
 		{
 			"name": "Augmented Reality Game",
 			"link": "https://github.com/JohnDoe/AR-Game",
+			"type": "Independent project",
+			"organization": "Organization Name",
+			"time": "summer 20XX",
 			"technologies": [
 				"Unity",
 				"ARKit",
@@ -219,6 +231,9 @@
 		{
 			"name": "Chatbot for Customer Support",
 			"link": "https://github.com/JohnDoe/Customer-Support-Chatbot",
+			"type": "Independent project",
+			"organization": "Organization Name",
+			"time": "summer 20XX",
 			"technologies": [
 				"Natural Language Processing",
 				"Python",
