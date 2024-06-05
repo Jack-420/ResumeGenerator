@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import NamedTuple
 
-from .resume_templates import Resume
+from .resume_templates import ResumeTemplate
 
 
 class ResumeOutputType(Enum):
@@ -20,5 +20,5 @@ TempResume = NamedTuple(
 )
 
 ResumeTemplateEnum = Enum(
-    "ResumeTemplateEnum", {k: k for k in Resume.available_templates()}
+    "ResumeTemplateEnum", {k: k for k in ResumeTemplate.available_templates()}
 )

@@ -1,11 +1,11 @@
-[ ] format improvement of resume with photo
+[ ] TODO: format improvement of resume with photo
 
-[x] Fast API restructuring with ApiRoutes
+[x] TODO: Fast API restructuring with ApiRoutes
 
-[X] Authentication
+[X] TODO: Authentication
 
-[X] saving data in firebase App
+[X] TODO: saving data in firebase App
 
-[ ] saving google files in G-drive
+[ ] TODO: saving google files in G-drive
 
-[ ] add a two-column resume template
+[ ] TODO: add a two-column resume template

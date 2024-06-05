@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import FileResponse
 
-from ..resume.resume_templates import Resume
+from ..resume.resume_templates import ResumeTemplate
 from .constants import FileResponseData, ResumeTemplateEnum
 from .dependencies import (
     create_resume_from_data,
