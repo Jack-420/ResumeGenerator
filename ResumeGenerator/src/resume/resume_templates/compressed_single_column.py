@@ -1,6 +1,18 @@
 from typing import Union
 
-from pylatex import Command, Document, NoEscape, Package, Section, VerticalSpace
+from pylatex import (
+    Center,
+    Command,
+    Document,
+    FlushLeft,
+    HugeText,
+    NoEscape,
+    Package,
+    Section,
+    SmallText,
+    TextBlock,
+    VerticalSpace,
+)
 from pylatex.base_classes import LatexObject
 
 from ...data.constants import AnyUrlStr
@@ -25,6 +37,7 @@ class ItemView(CustomCommand):
         super().__init__(item)
 
 
+# TODO: try using Latex object for the body of the CustomCommand
 class HeadingTwoByTwoView(CustomCommand):
     args = 4
     body = r"\vspace*{-2pt}\item\begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}\vspace*{2pt}\textbf{#1} & #2 \\\textit{#3} & \textit{ #4} \\\end{tabular*}\vspace*{-6pt}"
@@ -39,7 +52,7 @@ class HeadingTwoByTwoView(CustomCommand):
         super().__init__(top_left, top_right, bottom_left, bottom_right)
 
 
-class DictView(CustomCommand):
+class DictViewItem(CustomCommand):
     args = 2
     body = r"\item\textbf{#1:} #2\vspace*{-6pt}"
 
@@ -55,7 +68,7 @@ class TitleLink(CustomCommand):
         super().__init__(title, link)
 
 
-class SingleLineThreeData(CustomCommand):
+class SingleLineThreeItem(CustomCommand):
     args = 3
     body = r"\item\vspace*{-4pt}\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}\textbf{#1} $|$ \footnotesize\emph{#2} & {#3} \\\end{tabular*}\vspace*{-3pt}"
 
@@ -67,13 +80,21 @@ class SingleLineThreeData(CustomCommand):
 
 class IconLinkView(CustomCommand):
     args = 3
+    body = r"\large\faIcon{#1}\href{#2}{\underline{#3}} "
+
+    def __init__(self, icon: CommandArg, link: CommandArg, display: CommandArg) -> None:
+        super().__init__(icon, link, display)
+
+
+class IconLinkViewItem(CustomCommand):
+    args = 3
     body = r"\item\large\hspace*{10cm}\hfill\faIcon{#1} \href{#2}{\underline{#3}}\\"
 
     def __init__(self, icon: CommandArg, link: CommandArg, display: CommandArg) -> None:
         super().__init__(icon, link, display)
 
 
-class VerticalView(CustomCommand):
+class VerticalViewItem(CustomCommand):
     args = 1
     body = r"\item\large\hspace*{2.25cm}\qquad \text{#1} \\"
 
@@ -127,11 +148,12 @@ def import_packages_in_document(doc: Document) -> Document:
 def add_custom_commands(doc: Document) -> Document:
     ItemView.declaration(doc)
     HeadingTwoByTwoView.declaration(doc)
-    DictView.declaration(doc)
+    DictViewItem.declaration(doc)
     TitleLink.declaration(doc)
-    SingleLineThreeData.declaration(doc)
+    SingleLineThreeItem.declaration(doc)
     IconLinkView.declaration(doc)
-    VerticalView.declaration(doc)
+    IconLinkViewItem.declaration(doc)
+    VerticalViewItem.declaration(doc)
     HeaderSection.declare_command_in_document(doc)
     SubHeadingList.declare_command_in_document(doc)
     ItemList.declare_command_in_document(doc)
@@ -194,6 +216,25 @@ def define_document_settings(doc: Document) -> Document:
     return doc
 
 
+def add_header_section_without_photo(doc: Document, data: ResumeData) -> Document:
+    doc.append(Command("setstretch", arguments=["0.5"]))
+    doc.append(Command("begin", arguments=["center"]))
+    doc.append(
+        Command(
+            "textbf",
+            arguments=[
+                NoEscape(rf"\Huge {data.personal_info.name} \\ \vspace*{{10pt}}")
+            ],
+        )
+    )
+    doc.append(Command("small"))
+    for contact in data.personal_info.contact_infos:
+        doc.append(IconLinkView(contact.fa_icon, contact.link, contact.display))
+    doc.append(Command("end", arguments=["center"]))
+
+    return doc
+
+
 def add_header_section_with_photo(doc: Document, data: ResumeData) -> Document:
     doc.append(Command("setstretch", arguments=["0.5"]))
     doc.append(
@@ -208,7 +249,7 @@ def add_header_section_with_photo(doc: Document, data: ResumeData) -> Document:
 
     with HeaderSection(doc):
         doc.append(
-            VerticalView(
+            VerticalViewItem(
                 Command(
                     "textbf",
                     arguments=[NoEscape(rf"\huge {data.personal_info.name}")],
@@ -216,7 +257,7 @@ def add_header_section_with_photo(doc: Document, data: ResumeData) -> Document:
             )
         )
         for info in data.personal_info.short_infos:
-            doc.append(VerticalView(info))
+            doc.append(VerticalViewItem(info))
 
     doc.append(Command("hfill"))
     doc.append(VerticalSpace("8mm"))
@@ -224,7 +265,7 @@ def add_header_section_with_photo(doc: Document, data: ResumeData) -> Document:
     with HeaderSection(doc):
         for contact_info in data.personal_info.contact_infos:
             doc.append(
-                IconLinkView(
+                IconLinkViewItem(
                     contact_info.fa_icon,
                     contact_info.link,
                     contact_info.display,
@@ -251,7 +292,7 @@ def add_experience_section(doc: Document, data: list[Experience]) -> Document:
             with ItemList(doc):
                 for decs in exp.descriptions:
                     doc.append(ItemView(decs))
-                doc.append(DictView("Tech Stack", ", ".join(exp.technologies)))
+                doc.append(DictViewItem("Tech Stack", ", ".join(exp.technologies)))
 
     doc.append(VerticalSpace("1pt"))
     return doc
@@ -271,7 +312,7 @@ def add_projects_section(doc: Document, data: list[Project]) -> Document:
             )
             with ItemList(doc):
                 doc.append(ItemView(project.description))
-                doc.append(DictView("Tech Stack", ", ".join(project.technologies)))
+                doc.append(DictViewItem("Tech Stack", ", ".join(project.technologies)))
 
     doc.append(VerticalSpace("1pt"))
     return doc
@@ -300,7 +341,7 @@ def add_skills_section(doc: Document, data: list[Skill]) -> Document:
     doc.append(Section("Skills"))
     with SubHeadingList(doc):
         for skill in data:
-            doc.append(DictView(skill.type, ", ".join(skill.values)))
+            doc.append(DictViewItem(skill.type, ", ".join(skill.values)))
 
     doc.append(VerticalSpace("1pt"))
     return doc
@@ -312,7 +353,7 @@ def add_achievements_section(doc: Document, data: list[Achievement]) -> Document
         doc.append(VerticalSpace("1pt"))
         for achievement in data:
             doc.append(
-                SingleLineThreeData(
+                SingleLineThreeItem(
                     achievement.type,
                     achievement.title,
                     achievement.data,
