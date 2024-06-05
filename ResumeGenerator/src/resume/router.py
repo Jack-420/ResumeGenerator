@@ -29,7 +29,7 @@ async def read_template_metadata(
     template_name: ResumeTemplateEnum,
 ) -> ResumeTemplateMetadata:
     try:
-        return ResumeTemplate.get_template_metadata(template_name)
+        return ResumeTemplate.get_template_metadata(template_name.value)
     except ValueError as err:
         raise HTTPException(status_code=404, detail=str(err)) from err
 
