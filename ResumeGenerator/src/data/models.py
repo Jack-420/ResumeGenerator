@@ -327,7 +327,7 @@ class ResumeData(BaseModel):
             return ResumeData(**json_data)
 
     def data_for_latex(self) -> ResumeData:
-        LATEX_ESCAPE_CHARS = ["#", "%"]
+        LATEX_ESCAPE_CHARS = ["#", "%", "&"]
         json_str = self.model_dump_json()
         for char in LATEX_ESCAPE_CHARS:
             json_str = json_str.replace(char, rf"\\{char}")

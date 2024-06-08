@@ -1,18 +1,6 @@
 from typing import Union
 
-from pylatex import (
-    Center,
-    Command,
-    Document,
-    FlushLeft,
-    HugeText,
-    NoEscape,
-    Package,
-    Section,
-    SmallText,
-    TextBlock,
-    VerticalSpace,
-)
+from pylatex import Command, Document, NoEscape, Package, Section, VerticalSpace
 from pylatex.base_classes import LatexObject
 
 from ...data.constants import AnyUrlStr
@@ -26,8 +14,7 @@ from ...data.models import (
 )
 from .utils import CustomCommand, CustomContextCommand
 
-CommandArg = Union[str, LatexObject, AnyUrlStr, int]
-
+CommandArg = Union[str, LatexObject, AnyUrlStr, int, None]
 
 class ItemView(CustomCommand):
     args = 1

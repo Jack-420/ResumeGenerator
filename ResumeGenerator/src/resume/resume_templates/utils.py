@@ -1,5 +1,4 @@
 import contextlib
-from multiprocessing import context
 
 from pylatex import Document, NoEscape, UnsafeCommand
 from pylatex.base_classes import Arguments, CommandBase
@@ -28,7 +27,11 @@ class CustomCommand(CommandBase, metaclass=_NewMeta):
 
     def __init__(self, *args) -> None:
         with contextlib.suppress(AttributeError):
-            args = [NoEscape(a) for a in args]
+            # args = [NoEscape(a) for a in args]
+            args = [
+                NoEscape(a.dumps()) if isinstance(a, CommandBase) else NoEscape(a)
+                for a in args
+            ]
         super().__init__(arguments=Arguments(*args))
 
     @classmethod
@@ -59,15 +62,15 @@ class CustomContextCommandMeta(type):
         new_dct = dct.copy()
         for key, value in dct.items():
             if isinstance(value, type) and key == "Start":
-                new_dct["enter_command"] = cls.modified_class(name, value)()
+                new_dct["enter_command"] = cls.__modified_class(name, value)()
 
             elif isinstance(value, type) and key == "End":
-                new_dct["exit_command"] = cls.modified_class(name, value)()
+                new_dct["exit_command"] = cls.__modified_class(name, value)()
 
         return super().__new__(cls, name, bases, new_dct)
 
     @classmethod
-    def modified_class(cls, base_class_name: str, inner_class: type):
+    def __modified_class(cls, base_class_name: str, inner_class: type):
         """
         This method is used to create a new class with the same name as the base_class_name and the inner_class
         """
