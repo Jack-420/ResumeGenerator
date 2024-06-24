@@ -294,7 +294,7 @@ def add_projects_section(doc: Document, data: list[Project]) -> Document:
                     TitleLink(project.name, project.link),
                     project.time,
                     project.organization,
-                    project.type,
+                    "",
                 )
             )
             with ItemList(doc):
