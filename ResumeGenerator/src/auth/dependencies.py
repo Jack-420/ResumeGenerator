@@ -1,12 +1,11 @@
 from typing import Annotated
 
-import google.oauth2.id_token
 from fastapi import Depends, HTTPException, status
 from firebase_admin import auth
 from firebase_admin.auth import UserRecord
 
-from ..firebase import app
-from .constants import firebase_request_adapter, oauth2_scheme
+from ..firebase import firebase_app
+from .constants import oauth2_scheme
 from .models import AuthClaims
 
 
@@ -18,17 +17,9 @@ async def authenticate_with_token(
         raise ValueError("No token provided")
 
     try:
-        # TODO: verify with firebase_admin.auth.verify_id_token
-        x = auth.verify_id_token(id_token, app)
-        print(f"Verified token: {x}")
-        print(f"Verified token type: {type(x)}")
-
-        claims = google.oauth2.id_token.verify_firebase_token(
-            id_token, firebase_request_adapter
-        )
+        return AuthClaims(**auth.verify_id_token(id_token, firebase_app))
     except ValueError as exc:
         raise ValueError("Unauthorized") from exc
-    return AuthClaims(**claims)
 
 
 async def get_current_user(
@@ -42,3 +33,13 @@ async def get_current_user(
         )
     # TODO: get user from firebase_admin.auth.get_user so change var name to user in all the dependencies
     return auth.get_user(claims.user_id)
+
+async def get_admin(
+    user: Annotated[UserRecord, Depends(get_current_user)]
+)-> UserRecord:
+    if not user.custom_claims.get('admin'):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="User is not an admin",
+        )
+    return user
