@@ -12,7 +12,7 @@ from ...data.models import (
     ResumeData,
     Skill,
 )
-from .utils import CustomCommand, CustomContextCommand
+from .utils import CustomCommand, CustomContextCommand, bold_percentage
 
 CommandArg = Union[str, LatexObject, AnyUrlStr, int, None]
 
@@ -278,6 +278,7 @@ def add_experience_section(doc: Document, data: list[Experience]) -> Document:
             )
             with ItemList(doc):
                 for decs in exp.descriptions:
+                    decs = bold_percentage(decs)
                     doc.append(ItemView(decs))
                 doc.append(DictViewItem("Tech Stack", ", ".join(exp.technologies)))
 
@@ -290,11 +291,10 @@ def add_projects_section(doc: Document, data: list[Project]) -> Document:
     with SubHeadingList(doc):
         for project in data:
             doc.append(
-                HeadingTwoByTwoView(
+                SingleLineThreeItem(
                     TitleLink(project.name, project.link),
-                    project.time,
                     project.organization,
-                    "",
+                    project.time,
                 )
             )
             with ItemList(doc):

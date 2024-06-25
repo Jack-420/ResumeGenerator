@@ -1,4 +1,5 @@
 import contextlib
+import re
 
 from pylatex import Document, NoEscape, UnsafeCommand
 from pylatex.base_classes import Arguments, CommandBase
@@ -101,3 +102,15 @@ class CustomContextCommand(metaclass=CustomContextCommandMeta):
         cls.enter_command.declaration(doc)
         cls.exit_command.declaration(doc)
         return doc
+
+def bold_percentage(text: str) -> str:
+    """
+    This function is used to make the percentage in the text bold.
+    """
+    pattern = r'\b\d+(\.\d+)?\\%'
+
+    return re.sub(
+        pattern,
+        lambda match: r"\textbf{" + match.group(0) + "}",
+        text,
+    )
