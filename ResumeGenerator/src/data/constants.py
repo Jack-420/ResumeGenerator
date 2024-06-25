@@ -19,3 +19,5 @@ AbsoluteFilePath = Annotated[
     str,
     BeforeValidator(file_exists),
 ]
+
+ImagePath = AnyUrlStr | AbsoluteFilePath
