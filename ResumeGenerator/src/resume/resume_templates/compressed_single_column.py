@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Literal, Union
 
 from pylatex import Command, Document, NoEscape, Package, Section, VerticalSpace
 from pylatex.base_classes import LatexObject
@@ -48,11 +48,12 @@ class DictViewItem(CustomCommand):
 
 
 class TitleLink(CustomCommand):
-    args = 2
-    body = r"\textbf{\href{#2}{#1}}"
+    args = 3
+    body = r"\textbf{#1} \color{blue}\mdseries\textit{\href{#2}{#3}}"
 
     def __init__(self, title: CommandArg, link: CommandArg) -> None:
-        super().__init__(title, link)
+        link_text = "-link" if link else ""
+        super().__init__(title, link, link_text)
 
 
 class SingleLineThreeItem(CustomCommand):
@@ -67,7 +68,7 @@ class SingleLineThreeItem(CustomCommand):
 
 class IconLinkView(CustomCommand):
     args = 3
-    body = r"\large\faIcon{#1}\href{#2}{\underline{#3}} "
+    body = r"\small\faIcon{#1} \href{#2}{\color{blue}\underline{#3}} "
 
     def __init__(self, icon: CommandArg, link: CommandArg, display: CommandArg) -> None:
         super().__init__(icon, link, display)
@@ -342,7 +343,8 @@ def add_achievements_section(doc: Document, data: list[Achievement]) -> Document
             doc.append(
                 SingleLineThreeItem(
                     achievement.type,
-                    achievement.title + TitleLink(": link", achievement.link).dumps() if achievement.link else achievement.title,
+                    # achievement.title + TitleLink(": link", achievement.link).dumps() if achievement.link else achievement.title,
+                    TitleLink(achievement.title, achievement.link),
                     achievement.data,
                 )
             )
