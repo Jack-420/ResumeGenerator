@@ -64,14 +64,6 @@ class SingleLineThreeItem(CustomCommand):
     ) -> None:
         super().__init__(title, sub_title, data)
 
-class SingleLineFourItem(CustomCommand):
-    args = 4
-    body = r"\item\vspace*{-4pt}\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}\textbf{#1} $|$ \footnotesize\emph{#2} {#3} & {#4} \\\end{tabular*}\vspace*{-3pt}"
-
-    def __init__(
-        self, d1: CommandArg, d2: CommandArg, d3: CommandArg, d4: CommandArg
-    ) -> None:
-        super().__init__(d1, d2, d3, d4)
 
 class IconLinkView(CustomCommand):
     args = 3
@@ -152,7 +144,6 @@ def add_custom_commands(doc: Document) -> Document:
     HeaderSection.declare_command_in_document(doc)
     SubHeadingList.declare_command_in_document(doc)
     ItemList.declare_command_in_document(doc)
-    SingleLineFourItem.declaration(doc)
     return doc
 
 
@@ -349,10 +340,9 @@ def add_achievements_section(doc: Document, data: list[Achievement]) -> Document
         doc.append(VerticalSpace("1pt"))
         for achievement in data:
             doc.append(
-                SingleLineFourItem(
+                SingleLineThreeItem(
                     achievement.type,
-                    achievement.title,
-                    TitleLink(": link", achievement.link) if achievement.link else TitleLink("", ""),
+                    achievement.title + TitleLink(": link", achievement.link).dumps() if achievement.link else achievement.title,
                     achievement.data,
                 )
             )
