@@ -30,7 +30,7 @@ def create_resume_from_file(
 async def create_temp_resume_from_data(
     data: ResumeData, resume_template: ResumeTemplateEnum, output_type: ResumeOutputType
 ):
-    temp_dir = tempfile.mkdtemp(dir="temp")
+    temp_dir = tempfile.mkdtemp()
 
     if img_url := data.personal_info.photo:
         data.personal_info.photo = f"{temp_dir}/photo.jpg"

@@ -1,8 +1,8 @@
 FROM python:3.11-slim
 
-LABEL org.opencontainers.image.source https://github.com/AmulyaParitosh/ResumeGenerator
-LABEL org.opencontainers.image.description "ResumeGenerator is an API that generates a resume in pdf format using the data provided in a json file."
-LABEL org.opencontainers.image.licenses=MIT
+LABEL key=org.opencontainers.image.source value="https://github.com/AmulyaParitosh/ResumeGenerator"
+LABEL key=org.opencontainers.image.description value="ResumeGenerator is an API that generates a resume in pdf format using the data provided in a json file."
+LABEL key=org.opencontainers.image.licenses value="MIT"
 
 RUN pip install poetry==1.3.2
 
@@ -14,7 +14,7 @@ ENV POETRY_NO_INTERACTION=1 \
 WORKDIR /app
 
 COPY pyproject.toml poetry.lock ./
-COPY resumegenerator-6a627-firebase-adminsdk-62uz7-77d8182b2e.json ./
+COPY resumegenerator-6a627-firebase-adminsdk-62uz7-182c9cb744.json ./
 COPY .env ./
 RUN touch README.md
 
