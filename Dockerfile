@@ -4,7 +4,13 @@ LABEL key=org.opencontainers.image.source value="https://github.com/AmulyaParito
 LABEL key=org.opencontainers.image.description value="ResumeGenerator is an API that generates a resume in pdf format using the data provided in a json file."
 LABEL key=org.opencontainers.image.licenses value="MIT"
 
+# RUN apt-get update && apt=get install texlive-full
+RUN apt-get -y update
+RUN apt-get -y install --fix-missing sudo texlive-full
+RUN rm -rf /var/lib/apt/lists/*
+
 RUN pip install poetry==1.3.2
+
 
 ENV POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_IN_PROJECT=1 \
