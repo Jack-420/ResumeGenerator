@@ -4,6 +4,7 @@ from pathlib import Path
 from ..data.models import ResumeData
 from .constants import ResumeOutputType, ResumeTemplateEnum, TempResume
 from .resume_templates import ResumeTemplate
+from .utils import download_img
 
 
 def create_resume_from_file(
@@ -29,7 +30,12 @@ def create_resume_from_file(
 async def create_temp_resume_from_data(
     data: ResumeData, resume_template: ResumeTemplateEnum, output_type: ResumeOutputType
 ):
-    temp_dir = tempfile.mkdtemp()
+    temp_dir = tempfile.mkdtemp(dir="temp")
+
+    if img_url := data.personal_info.photo:
+        data.personal_info.photo = f"{temp_dir}/photo.jpg"
+        download_img(img_url, data.personal_info.photo)
+
     output_path = f"{temp_dir}/{data.personal_info.name.replace(' ', '_')}_{resume_template.value}"
 
     latex_data_obj = data.data_for_latex()
@@ -38,7 +44,9 @@ async def create_temp_resume_from_data(
     ).create_document(latex_data_obj)
 
     if output_type == ResumeOutputType.PDF:
-        latex_resume.generate_pdf(str(output_path))
+        latex_resume.generate_pdf(
+            str(output_path), compiler="pdflatex", compiler_args=["--shell-escape"]
+        )
     elif output_type == ResumeOutputType.TEX:
         latex_resume.generate_tex(str(output_path))
 

@@ -32,7 +32,7 @@ async def read_item(request: Request):
     if id_token:
         try:
             claims = auth.verify_id_token(id_token, firebase_app)
-        except ValueError as exc:
+        except Exception as exc:
             error_message = str(exc)
 
     return templates.TemplateResponse(
