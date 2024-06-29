@@ -5,12 +5,11 @@ from pathlib import Path
 from typing import List, Optional, Union
 
 from pydantic import BaseModel, EmailStr, Field, field_validator
-
-# from pydantic.types import AbsoluteFilePath, PhoneNumber
 from pydantic_extra_types.phone_numbers import PhoneNumber
 
-from .constants import AbsoluteFilePath, AnyUrlStr
+from .constants import AnyUrlStr, ImagePath
 
+# TODO: the base model uses = Filed(...) to define required fields, ise annotated with its datatype as it is creating issue with type hinting
 
 class ContactInfo(BaseModel):
     type: str = Field(
@@ -91,7 +90,7 @@ class PersonalInfo(BaseModel):
         min_length=1,
         max_length=100,
     )
-    photo: AbsoluteFilePath = Field(
+    photo: Optional[ImagePath] = Field(
         ..., title="Photo", description="Absolute file path to the photo"
     )
     address: Address = Field(..., title="Address", description="Address information")
@@ -290,6 +289,9 @@ class Achievement(BaseModel):
         title="Data",
         description="Detailed information about the achievement",
         min_length=1,
+    )
+    link: Optional[AnyUrlStr] = Field(
+        None, title="Achievement Link", description="Link to the Achievement for validation"
     )
 
 

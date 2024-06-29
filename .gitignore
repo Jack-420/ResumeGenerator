@@ -6,7 +6,7 @@ ResumeGenerator/example/personal_data*
 *.fdb_latexmk
 *.fls
 *.out
-resumegenerator-6a627-firebase-adminsdk-62uz7-77d8182b2e.json
+resumegenerator-6a627-firebase-adminsdk*
 ResumeGenerator.code-workspace
 
 # Byte-compiled / optimized / DLL files
